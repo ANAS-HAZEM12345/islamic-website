@@ -1,0 +1,3843 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الموقع الإسلامي الشامل - ANAS HAZEM.Z</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0b3b24;
+            --primary-light: #155e3a;
+            --accent: #d4af37;
+            --accent-light: #f5d77f;
+            --bg-cream: #fbf8f1;
+            --card-bg: #ffffff;
+            --text-dark: #1f2937;
+            --text-muted: #4b5563;
+            --border-color: #e5dcc5;
+        }
+
+        body.dark-mode {
+            --bg-cream: #111827;
+            --card-bg: #1f2937;
+            --text-dark: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #374151;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Amiri', 'Tajawal', Tahoma, serif;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* شريط التنقل العلوي العام */
+        .global-navbar {
+            background: linear-gradient(135deg, #072415, #0b3b24);
+            color: #ffffff;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .global-logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--accent-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .global-nav-links {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .nav-tab-btn:hover, .nav-tab-btn.active {
+            background: var(--accent);
+            color: #072415;
+        }
+
+        .global-theme-btn {
+            background: var(--accent);
+            color: #072415;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* الحاويات للصفحات */
+        .page-container {
+            flex: 1;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-view {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* تنسيقات الصفحة الرئيسية */
+        .home-hero {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(11,59,36,0.9), rgba(7,36,21,0.95)), url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://w3.org/2000/svg'%3E%3Cpath d='M50 0 L62 38 L100 50 L62 62 L50 100 L38 62 L0 50 L38 38 Z' fill='none' stroke='%23d4af37' stroke-width='1' stroke-opacity='0.22'/%3E%3C/svg%3E");
+            border-radius: 20px;
+            border: 2px solid var(--accent);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            color: #fff;
+            margin-top: 10px;
+        }
+
+        .home-hero h1 {
+            font-size: 38px;
+            color: var(--accent-light);
+            margin-bottom: 15px;
+        }
+
+        .home-hero p {
+            font-size: 20px;
+            color: #e8f5e9;
+            line-height: 1.8;
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .home-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .home-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212,175,55,0.3);
+            border-color: var(--accent);
+        }
+
+        .home-card h3 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode .home-card h3 {
+            color: var(--accent-light);
+        }
+
+        .home-card p {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        .back-home-bar {
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-btn:hover { background: var(--primary-light); }
+
+        /* دمج تنسيقات الأقسام الفرعية بأمان */
+        
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            direction: rtl;
+            font-family: 'Tajawal', sans-serif;
+            background-color: #eef3ee;
+            background-image: radial-gradient(#d5e2d5 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #1f2937;
+            padding: 16px;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #144519 0%, #246b2b 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 32px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(20, 69, 25, 0.25);
+            margin-bottom: 18px;
+            border-bottom: 4px solid #c5a059;
+        }
+
+        .header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.1rem;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-family: 'Amiri', serif;
+            font-size: 1.2rem;
+            color: #e2ede3;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #246b2b;
+            background: #ffffff;
+            color: #144519;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: #144519;
+            color: #ffffff;
+        }
+
+        .status-bar {
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(8px);
+            padding: 14px 20px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            margin-bottom: 22px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            border: 1px solid #dce6dc;
+        }
+
+        .progress-text {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: #1b5e20;
+        }
+
+        .reset-all-btn {
+            background-color: #dc2626;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .zikr-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8e2;
+            border-right: 5px solid #2e7d32;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .zikr-card:active {
+            transform: scale(0.99);
+        }
+
+        .zikr-card.completed {
+            background: linear-gradient(to left, #e6f4ea, #f2f9f4);
+            border-color: #81c784;
+            border-right-color: #1b5e20;
+        }
+
+        .zikr-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.45rem;
+            color: #1a241b;
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        .zikr-note {
+            font-size: 0.9rem;
+            color: #4b5563;
+            background: #f3f6f3;
+            padding: 6px 14px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eef2ee;
+            padding-top: 14px;
+        }
+
+        .counter-badge {
+            background: #1b5e20;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 6px 18px;
+            border-radius: 20px;
+            min-width: 90px;
+            text-align: center;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-count {
+            background: #2e7d32;
+            color: white;
+            border: none;
+            padding: 8px 22px;
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .btn-reset-single {
+            background: #e5e7eb;
+            color: #374151;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+    
+
+        :root {
+            --bg-color: #fbf8f1;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --accent-color: #065f46;
+            --border-color: #e5dcc5;
+            --ayah-num-color: #b45309;
+        }
+        body.dark-mode {
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+            --text-color: #f3f4f6;
+            --accent-color: #10b981;
+            --border-color: #374151;
+            --ayah-num-color: #fbbf24;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
+        }
+        header {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        header h1 { font-size: 1.4rem; }
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+        select, button {
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            cursor: pointer;
+            outline: none;
+        }
+        select {
+            background-color: #ffffff;
+            color: #1f2937;
+            font-weight: bold;
+            min-width: 190px;
+        }
+        button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: rgba(255, 255, 255, 0.35); }
+        .container {
+            max-width: 900px;
+            margin: 25px auto;
+            padding: 0 15px;
+        }
+        .surah-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 30px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .surah-header {
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .surah-title {
+            font-family: "Traditional Arabic", "Amiri", "Scheherazade New", Georgia, serif;
+            font-size: 2.3rem;
+            color: var(--accent-color);
+            margin-bottom: 6px;
+        }
+        .surah-info { font-size: 0.9rem; opacity: 0.85; }
+        .bismillah {
+            font-family: "Traditional Arabic", "Amiri", "Scheherazade New", Georgia, serif;
+            font-size: 2rem;
+            text-align: center;
+            margin: 15px 0 25px;
+            color: var(--text-color);
+        }
+        .ayahs-container {
+            font-family: "Traditional Arabic", "Amiri", "Scheherazade New", Georgia, serif;
+            font-size: 1.9rem;
+            line-height: 2.5;
+            text-align: justify;
+            word-spacing: 3px;
+        }
+        .ayah-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ayah-num-color);
+            font-family: system-ui, sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 0 5px;
+            padding: 1px 7px;
+            border: 1px solid var(--ayah-num-color);
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        .nav-btn {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            padding: 10px 18px;
+            font-weight: bold;
+        }
+        .nav-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        @media (max-width: 600px) {
+            header { justify-content: center; text-align: center; }
+            .ayahs-container { font-size: 1.6rem; line-height: 2.3; }
+        }
+    
+
+        :root {
+            --bg-cream: #f4f1ea;
+            --primary-green: #1b4d3e;
+            --secondary-green: #2c6e58;
+            --gold: #b59449;
+            --gold-light: #e6d5a9;
+            --text-dark: #26241e;
+            --text-muted: #5a554c;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            direction: rtl;
+            background-color: var(--bg-cream);
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23b59449' stroke-width='1' stroke-opacity='0.22'%3E%3Cpath d='M40 0l10 30 30 10-30 10-10 30-10-30L0 40l30-10z'/%3E%3Ccircle cx='40' cy='40' r='12'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            font-family: 'Amiri', 'Traditional Arabic', 'Times New Roman', serif;
+            color: var(--text-dark);
+            padding: 20px 15px 50px 15px;
+            line-height: 1.9;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        /* الترويسة */
+        .header {
+            background: linear-gradient(135deg, var(--primary-green), var(--secondary-green));
+            color: #ffffff;
+            text-align: center;
+            padding: 32px 20px;
+            border-radius: 18px;
+            box-shadow: 0 6px 20px rgba(27, 77, 62, 0.22);
+            border-bottom: 4px solid var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .header p {
+            font-size: 1.25rem;
+            color: var(--gold-light);
+        }
+
+        /* شريط البحث والتصفية */
+        .controls-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(181, 148, 73, 0.3);
+            margin-bottom: 22px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: inherit;
+            font-size: 1.15rem;
+            border: 1.5px solid #d8d2c5;
+            border-radius: 12px;
+            background-color: #faf9f6;
+            color: var(--text-dark);
+            margin-bottom: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-green);
+        }
+
+        .topics-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+            scrollbar-width: thin;
+        }
+
+        .topic-btn {
+            background: #f4f1ea;
+            color: var(--primary-green);
+            border: 1px solid #dcd5c5;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: bold;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .topic-btn.active, .topic-btn:hover {
+            background: var(--primary-green);
+            color: #ffffff;
+            border-color: var(--primary-green);
+        }
+
+        /* عنوان القسم */
+        .topic-section-title {
+            background: #ffffff;
+            color: var(--primary-green);
+            padding: 12px 20px;
+            border-radius: 12px;
+            border-right: 5px solid var(--gold);
+            font-size: 1.65rem;
+            margin: 28px 0 16px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topic-count {
+            font-size: 1rem;
+            background: var(--bg-cream);
+            color: var(--text-muted);
+            padding: 2px 12px;
+            border-radius: 14px;
+        }
+
+        /* بطاقة الحديث النبوي */
+        .hadith-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(181, 148, 73, 0.25);
+            border-top: 3px solid var(--primary-green);
+            transition: transform 0.2s ease;
+        }
+
+        .narrator {
+            color: var(--secondary-green);
+            font-size: 1.15rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .hadith-text {
+            font-size: 1.45rem;
+            color: var(--text-dark);
+            text-align: justify;
+            margin-bottom: 16px;
+        }
+
+        .prophetic-quote {
+            color: #11382d;
+            font-weight: bold;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed #e5dfd3;
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+
+        .source-badge {
+            font-size: 1rem;
+            color: #7c6226;
+            background: #fbf8f1;
+            padding: 4px 12px;
+            border-radius: 8px;
+            border: 1px solid #efe6cf;
+        }
+
+        .copy-btn {
+            background: var(--bg-cream);
+            color: var(--primary-green);
+            border: 1px solid #d5cebe;
+            padding: 5px 14px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            font-size: 1.3rem;
+            color: var(--text-muted);
+        }
+    
+
+        :root {
+            --primary: #144519;
+            --primary-light: #246b2b;
+            --accent: #b59449;
+            --accent-light: #e8dfc8;
+            --bg-cream: #f4f1ea;
+            --card-bg: #ffffff;
+            --text-dark: #26241e;
+            --text-muted: #5a554c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23b59449' stroke-width='1' stroke-opacity='0.18'%3E%3Cpath d='M40 0l10 30 30 10-30 10-10 30-10-30L0 40l30-10z'/%3E%3Ccircle cx='40' cy='40' r='12'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            font-family: 'Tajawal', sans-serif;
+            color: var(--text-dark);
+            padding: 20px 15px 60px;
+            line-height: 1.9;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        /* الترويسة */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 36px 24px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(20, 69, 25, 0.22);
+            margin-bottom: 22px;
+            border-bottom: 5px solid var(--accent);
+        }
+
+        .header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-family: 'Amiri', serif;
+            font-size: 1.25rem;
+            color: #e6efe6;
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* بطاقة المقدمة */
+        .intro-box {
+            background: rgba(255, 255, 255, 0.94);
+            border: 1px solid #e2dccf;
+            border-right: 5px solid var(--accent);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        /* شريط البحث والتنقل */
+        .controls-wrapper {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+            margin-bottom: 26px;
+            border: 1px solid #e2dccf;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1.5px solid #dcd5c5;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+            background: #faf9f5;
+            color: var(--text-dark);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary-light);
+            background: #ffffff;
+        }
+
+        .font-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .font-btn {
+            background: #f0ece1;
+            border: 1px solid #dcd5c5;
+            color: var(--text-dark);
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            padding: 0 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .font-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .nav-pills {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+            scrollbar-width: thin;
+        }
+
+        .nav-pill {
+            white-space: nowrap;
+            background: #f5f2eb;
+            color: var(--text-dark);
+            border: 1px solid #e0d9c8;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-pill:hover, .nav-pill.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        /* مراحل السيرة */
+        .era-section {
+            margin-bottom: 32px;
+            scroll-margin-top: 145px;
+        }
+
+        .era-header {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 16px 22px;
+            margin-bottom: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+            border-right: 6px solid var(--primary);
+            border-left: 2px solid var(--accent);
+        }
+
+        .era-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .era-badge {
+            background: var(--accent-light);
+            color: #5c491e;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        /* بطاقات الأحداث */
+        .timeline {
+            position: relative;
+            padding-right: 22px;
+            border-right: 3px solid rgba(181, 148, 73, 0.45);
+        }
+
+        .event-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 22px 24px;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+            border: 1px solid #eae4d7;
+            position: relative;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            right: -31px;
+            top: 26px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid var(--bg-cream);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #e6e0d2;
+        }
+
+        .event-title {
+            font-family: 'Amiri', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .event-date {
+            background: #eef5ee;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .event-body {
+            font-size: var(--body-size, 1.12rem);
+            color: var(--text-dark);
+            text-align: justify;
+            line-height: 1.95;
+        }
+
+        .highlight-quote {
+            display: inline-block;
+            background: #faf6eb;
+            border-right: 3px solid var(--accent);
+            padding: 2px 10px;
+            margin: 4px 0;
+            font-family: 'Amiri', serif;
+            font-size: 1.25em;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .no-results {
+            display: none;
+            text-align: center;
+            background: #ffffff;
+            padding: 40px 20px;
+            border-radius: 16px;
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            border: 1px solid #e2dccf;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.85rem; }
+            .era-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .timeline { padding-right: 16px; }
+            .event-card::before { right: -25px; }
+        }
+    
+
+        :root {
+            --bg-color: #fbf8f1;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #4b5563;
+            --primary: #065f46;
+            --primary-light: #d1fae5;
+            --gold: #b45309;
+            --border: #e5dcc5;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        body.dark-mode {
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary: #10b981;
+            --primary-light: #064e3b;
+            --gold: #fbbf24;
+            --border: #374151;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        header {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 15px 25px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .btn-header {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+        }
+        .btn-header:hover { background: rgba(255, 255, 255, 0.35); }
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+        .hero {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+        }
+        .hero h2 {
+            font-family: 'Amiri', serif;
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        .hero p { color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .tab-btn {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 2px solid var(--border);
+            padding: 10px 22px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+        .section-content { display: none; }
+        .section-content.active { display: block; }
+        
+        /* Lessons Grid */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .lesson-card {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+        }
+        .lesson-card h3 {
+            font-family: 'Amiri', serif;
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+        }
+        .lesson-card ul { padding-right: 20px; color: var(--text-color); }
+        .lesson-card li { margin-bottom: 8px; }
+        .evidence {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+        body.dark-mode .evidence { color: #a7f3d0; }
+
+        /* FAQ & Filter */
+        .filter-bar {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .filter-bar input, .filter-bar select {
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        .filter-bar input { flex: 1; min-width: 220px; }
+        .stats-badge {
+            background: var(--gold);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .faq-item {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .faq-question {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+            gap: 10px;
+        }
+        .faq-question:hover { background: rgba(6, 95, 70, 0.05); }
+        .faq-cat {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        body.dark-mode .faq-cat { color: #a7f3d0; }
+        .faq-answer {
+            padding: 0 20px 18px;
+            color: var(--text-muted);
+            border-top: 1px dashed var(--border);
+            padding-top: 12px;
+            display: none;
+        }
+        .faq-item.open .faq-answer { display: block; }
+
+        /* Quiz Section */
+        .quiz-box {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .quiz-q-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--primary);
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option-btn {
+            text-align: right;
+            padding: 14px 18px;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .option-btn:hover:not(:disabled) { border-color: var(--primary); }
+        .option-btn.correct { background: #10b981; color: #fff; border-color: #059669; }
+        .option-btn.wrong { background: #ef4444; color: #fff; border-color: #dc2626; }
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+        .quiz-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+    
+
+        :root {
+            --bg: #fbf8f1;
+            --card: #ffffff;
+            --text: #1f2937;
+            --primary: #065f46;
+            --gold: #b45309;
+            --border: #e5dcc5;
+        }
+        body.dark {
+            --bg: #111827;
+            --card: #1f2937;
+            --text: #f3f4f6;
+            --primary: #10b981;
+            --gold: #fbbf24;
+            --border: #374151;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: background 0.3s, color 0.3s;
+            line-height: 1.7;
+        }
+        header {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+        header h1 {
+            font-family: 'Amiri', 'Traditional Arabic', Georgia, serif;
+            font-size: 1.65rem;
+        }
+        .header-btns {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-nav, .btn-theme {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn-nav:hover, .btn-theme:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+        .container {
+            max-width: 960px;
+            margin: 28px auto;
+            padding: 0 16px;
+        }
+        .card {
+            background: var(--card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+        .section-title {
+            font-family: 'Amiri', 'Traditional Arabic', Georgia, serif;
+            color: var(--primary);
+            font-size: 1.65rem;
+            margin-bottom: 16px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+        }
+        .lang-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        select, input {
+            padding: 10px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--bg);
+            color: var(--text);
+            outline: none;
+        }
+        .trans-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        textarea {
+            width: 100%;
+            height: 145px;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 1.05rem;
+            background: var(--bg);
+            color: var(--text);
+            resize: none;
+            outline: none;
+        }
+        .btn-action {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 22px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .btn-sec {
+            background: var(--gold);
+            color: #ffffff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .dict-controls {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .dict-controls input {
+            flex: 1;
+            min-width: 220px;
+        }
+        .term-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background: var(--bg);
+        }
+        .term-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .term-title {
+            font-weight: bold;
+            font-size: 1.15rem;
+            color: var(--primary);
+        }
+        .term-badge {
+            background: var(--gold);
+            color: #ffffff;
+            padding: 3px 12px;
+            border-radius: 14px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        @media (max-width: 680px) {
+            .trans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    
+
+        :root {
+            --bg-color: #fbf8f1;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+            --text-muted: #4b5563;
+            --primary: #065f46;
+            --primary-dark: #044734;
+            --gold: #b45309;
+            --gold-light: #fef3c7;
+            --border: #e5dcc5;
+            --shadow: rgba(0, 0, 0, 0.06);
+        }
+
+        body.dark-mode {
+            --bg-color: #111827;
+            --card-bg: #1f2937;
+            --text-color: #f3f4f6;
+            --text-muted: #9ca3af;
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --gold: #fbbf24;
+            --gold-light: #374151;
+            --border: #374151;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* الشريط العلوي */
+        header {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 16px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 12px var(--shadow);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        header h1 {
+            font-size: 1.45rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-header {
+            background-color: rgba(255, 255, 255, 0.18);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-header:hover {
+            background-color: rgba(255, 255, 255, 0.32);
+        }
+
+        /* الحاوية الرئيسية */
+        .container {
+            max-width: 960px;
+            margin: 30px auto;
+            padding: 0 18px;
+        }
+
+        /* البانر الترحيبي */
+        .hero-box {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 18px;
+            padding: 40px 25px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 6px 20px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+        }
+
+        .bismillah {
+            font-family: "Traditional Arabic", "Amiri", Georgia, serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .site-brand {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        /* البطاقات والأقسام */
+        .section-card {
+            background-color: var(--card-bg);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 30px 25px;
+            margin-bottom: 28px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* شبكة الرؤية والأهداف */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .value-item {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .value-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .value-item h3 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .value-item p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        /* دليل أقسام الموقع */
+        .sections-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .dir-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .dir-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--primary);
+        }
+
+        .dir-card h4 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .dir-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .dir-link {
+            display: inline-block;
+            text-align: center;
+            background-color: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .dir-link:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* كلمة المؤسس */
+        .founder-box {
+            background-color: var(--gold-light);
+            border-right: 5px solid var(--gold);
+            padding: 22px;
+            border-radius: 12px;
+        }
+
+        .founder-box h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        .founder-box p {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+
+        .signature {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* التذييل */
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+            .site-brand {
+                font-size: 1.6rem;
+            }
+            .hero-box {
+                padding: 28px 18px;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+
+    <header class="global-navbar">
+        <div class="global-logo" onclick="switchPage('home')">
+            <span>🕌</span> ANAS HAZEM.Z
+        </div>
+        <div class="global-nav-links">
+            <button class="nav-tab-btn active" onclick="switchPage('home')">الرئيسية</button>
+            <button class="nav-tab-btn" onclick="switchPage('azkar')">الأذكار</button>
+            <button class="nav-tab-btn" onclick="switchPage('quran')">المصحف</button>
+            <button class="nav-tab-btn" onclick="switchPage('ahadith')">الأحاديث</button>
+            <button class="nav-tab-btn" onclick="switchPage('seerah')">السيرة</button>
+            <button class="nav-tab-btn" onclick="switchPage('awareness')">التوعية</button>
+            <button class="nav-tab-btn" onclick="switchPage('translator')">المترجم</button>
+            <button class="nav-tab-btn" onclick="switchPage('about')">عن الموقع</button>
+        </div>
+        <button class="global-theme-btn" id="globalThemeBtn" onclick="toggleGlobalTheme()">🌙 الوضع الليلي</button>
+    </header>
+
+    <div class="page-container">
+
+        <!-- 1. الرئيسية -->
+        <div id="page-home" class="page-view active">
+            <div class="home-hero">
+                <h1>﴿ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ﴾</h1>
+                <p>أهلاً بك في منصتك الإسلامية المتكاملة. تصفح الأذكار، القرآن الكريم، الأحاديث النبوية، السيرة العطرة، والفقه بسهولة تامة.</p>
+            </div>
+
+            <div class="home-grid">
+                <div class="home-card" onclick="switchPage('azkar')">
+                    <h3>📿 أذكار الصباح والمساء</h3>
+                    <p>حصن المسلم والأذكار اليومية مع عداد تفاعلي</p>
+                </div>
+                <div class="home-card" onclick="switchPage('quran')">
+                    <h3>📖 المصحف الشريف</h3>
+                    <p>قراءة سور القرآن الكريم مع التحكم بالحجم والخط</p>
+                </div>
+                <div class="home-card" onclick="switchPage('ahadith')">
+                    <h3>📜 موسوعة الأحاديث</h3>
+                    <p>أحاديث نبوية صحيحة مصنفة حسب الأبواب</p>
+                </div>
+                <div class="home-card" onclick="switchPage('seerah')">
+                    <h3>📚 السيرة النبوية</h3>
+                    <p>محطات من حياة النبي صلى الله عليه وسلم</p>
+                </div>
+                <div class="home-card" onclick="switchPage('awareness')">
+                    <h3>⚖️ التوعية والفقه</h3>
+                    <p>أحكام الطهارة، الصلاة، واختبارات دينية تفاعلية</p>
+                </div>
+                <div class="home-card" onclick="switchPage('translator')">
+                    <h3>🌍 المترجم الإسلامي</h3>
+                    <p>قاموس المصطلحات الإسلامية باللغات المختلفة</p>
+                </div>
+                <div class="home-card" onclick="switchPage('about')">
+                    <h3>ℹ️ تفاصيل عنا</h3>
+                    <p>معلومات عن الموقع ومطوره ANAS HAZEM.Z</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. أذكار -->
+        <div id="page-azkar" class="page-view">
+            <div class="back-home-bar"><button class="back-btn" onclick="switchPage('home')">← العودة للرئيسية</button></div>
+            
+
+<div class="container">
+    <header class="header">
+        <h1>﴿ أَذْكَارُ الصَّبَاحِ وَالمَسَاءِ ﴾</h1>
+        <p>«أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ»</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" id="btnMorning" onclick="switchMode('morning')">☀️ أذكار الصباح</button>
+        <button class="tab-btn" id="btnEvening" onclick="switchMode('evening')">🌙 أذكار المساء</button>
+    </div>
+
+    <div class="status-bar">
+        <div class="progress-text" id="totalProgress">المُنجز: 0 من 0</div>
+        <button class="reset-all-btn" onclick="resetAll()">تصفير الكل ↺</button>
+    </div>
+
+    <div id="azkarList"></div>
+</div>
+
+
+
+
+        </div>
+
+        <!-- 3. مصحف -->
+        <div id="page-quran" class="page-view">
+            <div class="back-home-bar"><button class="back-btn" onclick="switchPage('home')">← العودة للرئيسية</button></div>
+            
+    <header>
+        <h1>📖 المصحف الشريف</h1>
+        <div class="controls">
+            <select id="surahSelect" onchange="loadSurah(this.value)">
+                <option value="">جاري تحميل السور...</option>
+            </select>
+            <button onclick="changeFontSize(2)" title="تكبير الخط">أ+</button>
+            <button onclick="changeFontSize(-2)" title="تصغير الخط">أ-</button>
+            <button onclick="toggleDarkMode()" id="themeBtn">🌙 ليلي</button>
+        </div>
+    </header>
+    <div class="container">
+        <div class="surah-card">
+            <div id="contentArea">
+                <div class="loading">جاري تحميل المصحف الشريف...</div>
+            </div>
+            <div class="nav-buttons">
+                <button class="nav-btn" id="prevBtn" onclick="navigateSurah(-1)">السورة السابقة</button>
+                <button class="nav-btn" id="nextBtn" onclick="navigateSurah(1)">السورة التالية</button>
+            </div>
+        </div>
+    </div>
+    
+
+        </div>
+
+        <!-- 4. أحاديث -->
+        <div id="page-ahadith" class="page-view">
+            <div class="back-home-bar"><button class="back-btn" onclick="switchPage('home')">← العودة للرئيسية</button></div>
+            
+
+<div class="container">
+    <header class="header">
+        <h1>﴿ مَوْسُوعَةُ الأَحَادِيثِ النَّبَوِيَّةِ ﴾</h1>
+        <p>«نَضَّرَ اللَّهُ امْرَأً سَمِعَ مَقَالَتِي فَوَعَاهَا وَحَفِظَهَا وَبَلَّغَهَا»</p>
+    </header>
+
+    <div class="controls-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="ابحث في نص الحديث، الراوي، أو الموضوع..." oninput="filterHadiths()">
+        <div class="topics-bar" id="topicsBar"></div>
+    </div>
+
+    <div id="hadithsContainer"></div>
+</div>
+
+
+
+
+        </div>
+
+        <!-- 5. سيرة -->
+        <div id="page-seerah" class="page-view">
+            <div class="back-home-bar"><button class="back-btn" onclick="switchPage('home')">← العودة للرئيسية</button></div>
+            
+
+<div class="container">
+    <header class="header">
+        <h1>﴿ السِّيرَةُ النَّبَوِيَّةُ الشَّرِيفَةُ كَامِلَةً ﴾</h1>
+        <p>«لَّقَدْ كَانَ لَكُمْ فِي رَسُولِ اللَّهِ أُسْوَةٌ حَسَنَةٌ لِّمَن كَانَ يَرْجُو اللَّهَ وَالْيَوْمَ الْآخِرَ وَذَكَرَ اللَّهَ كَثِيرًا»</p>
+    </header>
+
+    <div class="intro-box">
+        تمتد السيرة النبوية الشريفة على مدار <strong>63 عاماً</strong>، بدءاً من مولد النبي محمد ﷺ في مكة المكرمة عام الفيل، وحتى وفاته في المدينة المنورة عام 11 للهجرة. نستعرض هنا التسلسل الزمني الشامل والمفصل لكل محطات حياته ﷺ المستقاة من أمهات كتب السيرة كـ «السيرة النبوية لابن هشام» و«الرحيق المختوم».
+    </div>
+
+    <div class="controls-wrapper">
+        <div class="search-row">
+            <input type="text" id="searchInput" class="search-input" placeholder="ابحث في أحداث السيرة، الغزوات، أو الشخصيات..." oninput="filterEvents()">
+            <div class="font-controls" title="تغيير حجم الخط">
+                <button class="font-btn" onclick="changeFontSize(0.1)">أ+</button>
+                <button class="font-btn" onclick="changeFontSize(-0.1)">أ-</button>
+            </div>
+        </div>
+        <nav class="nav-pills">
+            <a href="#era1" class="nav-pill">أولاً: قبل البعثة (40 عاماً)</a>
+            <a href="#era2" class="nav-pill">ثانياً: العهد المكي (13 عاماً)</a>
+            <a href="#era3" class="nav-pill">ثالثاً: تأسيس الدولة (1–5 هـ)</a>
+            <a href="#era4" class="nav-pill">رابعاً: التمكين والفتح (6–8 هـ)</a>
+            <a href="#era5" class="nav-pill">خامساً: الوفود والوفاة (9–11 هـ)</a>
+        </nav>
+    </div>
+
+    <div id="noResults" class="no-results">لا توجد أحداث مطابقة لبحثك. جرب البحث بكلمة أخرى.</div>
+
+    <!-- المرحلة الأولى -->
+    <section id="era1" class="era-section">
+        <div class="era-header">
+            <h2 class="era-title">أولاً: النسب الشريف والنشأة قبل البعثة</h2>
+            <span class="era-badge">40 عاماً</span>
+        </div>
+        <div class="timeline">
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">النسب والولادة</h3>
+                    <span class="event-date">عام الفيل (571 م)</span>
+                </div>
+                <p class="event-body">
+                    هو محمد بن عبد الله بن عبد المطلب بن هاشم من قبيلة قريش، وينتهي نسبه إلى إسماعيل بن إبراهيم عليهما السلام. وُلد يوم الاثنين في شهر ربيع الأول عام الفيل الموافق لعام 571 ميلادية، وتوفي والده عبد الله قبل ولادته وهو في طريق عودته من الشام.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">الرضاعة وشق الصدر</h3>
+                    <span class="event-date">السنوات 1 – 4</span>
+                </div>
+                <p class="event-body">
+                    أرضعته ثويبة مولاة أبي لهب أياماً، ثم انتقل إلى بادية بني سعد لترضعه حليمة السعدية. في سن الرابعة وقعت حادثة شق الصدر الأولى حيث استخرج الملكان جبريل وميكائيل حظ الشيطان من قلبه وغسلاه بماء زمزم، فأعادته حليمة إلى أمه خوفاً عليه.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">اليتم والكفالة</h3>
+                    <span class="event-date">السنوات 6 – 8</span>
+                </div>
+                <p class="event-body">
+                    توفيت أمه آمنة بنت وهب بالأبواء وهو في السادسة من عمره، فكفله جده عبد المطلب الذي أحبه حباً شديداً. توفي جده وهو في الثامنة من عمره، فانتقل إلى كفالة عمه أبي طالب الذي ضمه إلى أبنائه رغم قلة ماله.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">العمل والشباب</h3>
+                    <span class="event-date">مرحلة الفتوة</span>
+                </div>
+                <p class="event-body">
+                    رعى الغنم لأهل مكة في صغره، ثم خرج في رحلة تجارية إلى الشام مع عمه أبي طالب وهو في الثانية عشرة، وهناك رآه الراهب بحيرى وبشّر بنبوته. شهد في شبابه حرب الفجار وحلف الفضول الذي تعاهدت فيه قريش على نصرة المظلوم.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">الزواج وبناء الكعبة</h3>
+                    <span class="event-date">السنوات 25 – 35</span>
+                </div>
+                <p class="event-body">
+                    عمل في تجارة السيدة خديجة بنت خويلد وأبهرها بصدقه وأمانته، فتزوجها وهو في الخامسة والعشرين وكانت في الأربعين، وأنجبت له جميع أولاده عدا إبراهيم. في الخامسة والثلاثين شارك في تجديد بناء الكعبة، وحلّ نزاع القبائل بحكمته حين وضع الحجر الأسود في رداء وحملته كل قبيلة من طرف.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- المرحلة الثانية -->
+    <section id="era2" class="era-section">
+        <div class="era-header">
+            <h2 class="era-title">ثانياً: البعثة والدعوة في مكة المكرمة</h2>
+            <span class="era-badge">13 عاماً</span>
+        </div>
+        <div class="timeline">
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">نزول الوحي</h3>
+                    <span class="event-date">سن الأربعين</span>
+                </div>
+                <p class="event-body">
+                    كان ﷺ يتحنث ويتعبد في غار حراء، وفي سن الأربعين نزل عليه جبريل عليه السلام بأول آيات القرآن من سورة العلق. عاد مرتجفاً إلى خديجة فطمأنته وذهبت به إلى ابن عمها ورقة بن نوفل الذي أكد أنه ناموس موسى.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">الدعوة السرية</h3>
+                    <span class="event-date">السنوات 1 – 3 للبعثة</span>
+                </div>
+                <p class="event-body">
+                    استمرت ثلاث سنوات دعا فيها المقربين سراً، فكان أول من آمن خديجة من النساء، وأبو بكر الصديق من الرجال، وعلي بن أبي طالب من الصبيان، وزيد بن حارثة من الموالي.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">الجهر بالدعوة والاضطهاد</h3>
+                    <span class="event-date">السنوات 4 – 10 للبعثة</span>
+                </div>
+                <p class="event-body">
+                    بعد نزول أمر الله بالجهر، صعد جبل الصفا ونادى قريشاً فكذبه عمه أبو لهب. بدأت قريش بتعذيب المستضعفين مثل بلال بن رباح وآل ياسر، وحاولت مساومة النبي بالمال والملك فرفض، ثم فرضت حصاراً اقتصادياً واجتماعياً في شعب أبي طالب لمدة ثلاث سنوات.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">الهجرة إلى الحبشة</h3>
+                    <span class="event-date">العام 5 للبعثة</span>
+                </div>
+                <p class="event-body">
+                    أمر النبي أصحابه بالهجرة إلى الحبشة مرتين فراراً بدينهم إلى الملك النجاشي العادل، وهاجر فيها جعفر بن أبي طالب وعثمان بن عفان وزوجته رقية.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">عام الحزن والبحث عن نصير</h3>
+                    <span class="event-date">العام 10 للبعثة</span>
+                </div>
+                <p class="event-body">
+                    في العام العاشر للبعثة توفي عمه أبو طالب ثم زوجته خديجة، فاشتد أذى قريش. خرج ﷺ إلى الطائف لدعوة ثقيف فردوه رداً قبيحاً وأغروا به سفهاءهم، ثم عاد إلى مكة في جوار المطعم بن عدي.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">الإسراء والمعراج</h3>
+                    <span class="event-date">العام 11 للبعثة</span>
+                </div>
+                <p class="event-body">
+                    أكرمه الله برحلة ليلية من المسجد الحرام إلى المسجد الأقصى حيث أمّ الأنبياء، ثم عُرج به إلى السماوات السبع، وهناك فُرضت الصلوات الخمس.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">بيعتا العقبة</h3>
+                    <span class="event-date">العامان 12 – 13 للبعثة</span>
+                </div>
+                <p class="event-body">
+                    التقى النبي وفوداً من يثرب في موسم الحج، فأسلموا وبايعوه في العقبة الأولى على التوحيد ومكارم الأخلاق، ثم في العقبة الثانية على النصرة والحماية إذا هاجر إليهم.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- المرحلة الثالثة -->
+    <section id="era3" class="era-section">
+        <div class="era-header">
+            <h2 class="era-title">ثالثاً: الهجرة وتأسيس الدولة في المدينة</h2>
+            <span class="era-badge">السنوات 1 – 5 هـ</span>
+        </div>
+        <div class="timeline">
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">الهجرة النبوية</h3>
+                    <span class="event-date">1 هـ</span>
+                </div>
+                <p class="event-body">
+                    تآمرت قريش لقتله في دار الندوة، فأذن الله له بالهجرة وترك علياً في فراشه ليرد الأمانات. خرج مع أبي بكر الصديق واختبآ في غار ثور ثلاث ليالٍ، ثم سلكا طريق الساحل حتى وصلا إلى قباء فأسسا أول مسجد، ثم دخلا المدينة وسط استقبال حافل.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">بناء المجتمع الجديد</h3>
+                    <span class="event-date">1 هـ</span>
+                </div>
+                <p class="event-body">
+                    قام النبي بثلاث خطوات تأسيسية هي بناء المسجد النبوي، والمؤاخاة بين المهاجرين والأنصار، وكتابة صحيفة المدينة لتنظيم العلاقة مع اليهود والمشركين.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">غزوة بدر الكبرى</h3>
+                    <span class="event-date">2 هـ</span>
+                </div>
+                <p class="event-body">
+                    خرج المسلمون لاعتراض قافلة قريش بقيادة أبي سفيان، فنجت القافلة وخرجت قريش بجيش قوامه ألف مقاتل. التقى الجمعان في بدر وانتصر المسلمون رغم قلة عددهم (313 مقاتلاً)، وقُتل صناديد قريش مثل أبي جهل.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">غزوة أحد</h3>
+                    <span class="event-date">3 هـ</span>
+                </div>
+                <p class="event-body">
+                    جاءت قريش للثأر بثلاثة آلاف مقاتل، وحقق المسلمون نصراً في البداية قبل أن يخالف الرماة أمر النبي وينزلوا عن الجبل. التف خالد بن الوليد بجيش المشركين، فاستُشهد سبعون صحابياً منهم حمزة بن عبد المطلب، وأُصيب النبي في وجهه وكُسرت رباعيته.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">إجلاء اليهود الناقضين للعهد</h3>
+                    <span class="event-date">2 – 4 هـ</span>
+                </div>
+                <p class="event-body">
+                    نقض يهود بني قينقاع العهد بعد بدر فأجلاهم النبي، ثم نقض بنو النضير العهد وحاولوا اغتياله في العام الرابع فأجلاهم إلى خيبر.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">غزوة الخندق (الأحزاب)</h3>
+                    <span class="event-date">5 هـ</span>
+                </div>
+                <p class="event-body">
+                    تحزبت قريش وغطفان واليهود في عشرة آلاف مقاتل لحصار المدينة، فأشار سلمان الفارسي بحفر الخندق. نقض يهود بني قريظة عهدهم من الداخل، فأرسل الله ريحاً شتتت الأحزاب، ثم حاصر النبي بني قريظة وحكم فيهم سعد بن معاذ بقتل مقاتليهم وسبي ذراريهم لخيانتهم العظمى.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- المرحلة الرابعة -->
+    <section id="era4" class="era-section">
+        <div class="era-header">
+            <h2 class="era-title">رابعاً: مرحلة التمكين والفتح</h2>
+            <span class="era-badge">السنوات 6 – 8 هـ</span>
+        </div>
+        <div class="timeline">
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">صلح الحديبية</h3>
+                    <span class="event-date">6 هـ</span>
+                </div>
+                <p class="event-body">
+                    خرج النبي في 1400 صحابي لأداء العمرة فمنعتهم قريش، وانتهى الأمر بعقد صلح ينص على هدنة لعشر سنوات وعودة المسلمين ذلك العام على أن يعتمروا العام المقبل. وصف القرآن هذا الصلح بالفتح المبين لأنه أتاح انتشار الإسلام بحرية.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">مراسلة الملوك وغزوة خيبر</h3>
+                    <span class="event-date">7 هـ</span>
+                </div>
+                <p class="event-body">
+                    أرسل ﷺ رسائل إلى ملوك العالم يدعوهم للإسلام مثل هرقل وكسرى والمقوقس. وفي العام نفسه فتح حصون خيبر التي كانت معقلاً لليهود المتآمرين، وصالحهم على العمل في الأرض مقابل نصف الثمار.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">عمرة القضاء وغزوة مؤتة</h3>
+                    <span class="event-date">8 هـ</span>
+                </div>
+                <p class="event-body">
+                    أدى المسلمون عمرة القضاء في مكة كما اتُفق في الحديبية. ثم أرسل النبي جيشاً من ثلاثة آلاف مقاتل إلى مؤتة بعد مقتل رسوله، فواجهوا جيشاً ضخماً للروم وحلفائهم، واستُشهد القادة الثلاثة زيد بن حارثة وجعفر بن أبي طالب وعبد الله بن رواحة، فانحاز خالد بن الوليد بالجيش بذكاء عسكري أنقذ المسلمين.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">فتح مكة</h3>
+                    <span class="event-date">رمضان 8 هـ</span>
+                </div>
+                <p class="event-body">
+                    نقضت قريش الهدنة بإعانتها بني بكر على خزاعة حلفاء النبي، فزحف ﷺ بعشرة آلاف مقاتل ودخل مكة دون قتال يُذكر. حطم الأصنام حول الكعبة وأصدر عفواً عاماً عن أهل مكة قائلاً: <span class="highlight-quote">«اذهبوا فأنتم الطلقاء»</span>.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">غزوة حنين والطائف</h3>
+                    <span class="event-date">8 هـ</span>
+                </div>
+                <p class="event-body">
+                    تجمعت قبيلتا هوازن وثقيف لقتال المسلمين، وكاد المسلمون يُهزمون في بداية المعركة لكثرتهم ثم ثبت النبي ونزل النصر، وحاصر الطائف ثم عاد ووزع الغنائم.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- المرحلة الخامسة -->
+    <section id="era5" class="era-section">
+        <div class="era-header">
+            <h2 class="era-title">خامساً: عام الوفود وحجة الوداع والوفاة</h2>
+            <span class="era-badge">السنوات 9 – 11 هـ</span>
+        </div>
+        <div class="timeline">
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">غزوة تبوك</h3>
+                    <span class="event-date">9 هـ</span>
+                </div>
+                <p class="event-body">
+                    خرج النبي في ثلاثين ألف مقاتل في حر شديد ومسافة بعيدة لمواجهة الروم في الشام، فتراجع الروم ولم يحدث قتال، وعاد النبي بعد أن أبرم معاهدات مع قبائل الشمال.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">عام الوفود</h3>
+                    <span class="event-date">9 هـ</span>
+                </div>
+                <p class="event-body">
+                    بعد فتح مكة وتبوك توافدت قبائل العرب من كل مكان إلى المدينة معلنة إسلامها ودخولها في دين الله أفواجاً.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">حجة الوداع</h3>
+                    <span class="event-date">10 هـ</span>
+                </div>
+                <p class="event-body">
+                    حج النبي ﷺ بالناس ومعه أكثر من مئة ألف مسلم، وألقى خطبته الجامعة في عرفة التي أرسى فيها حقوق الإنسان وحرمة الدماء والأموال، ونزلت آية إكمال الدين.
+                </p>
+            </article>
+
+            <article class="event-card">
+                <div class="event-header">
+                    <h3 class="event-title">المرض والوفاة</h3>
+                    <span class="event-date">12 ربيع الأول 11 هـ</span>
+                </div>
+                <p class="event-body">
+                    في أواخر شهر صفر بدأ مرض النبي بالصداع والحمى، واستأذن زوجاته أن يُمرض في بيت عائشة رضي الله عنها. أمر أبا بكر الصديق أن يؤم الناس في الصلاة، وفي ضحى يوم الاثنين الثاني عشر من ربيع الأول عام 11 هـ اختار الرفيق الأعلى وفاضت روحه الطاهرة عن عمر ناهز 63 عاماً، ودُفن في حجرة عائشة حيث قُبض.
+                </p>
+            </article>
+        </div>
+    </section>
+</div>
+
+<button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="العودة للأعلى">↑</button>
+
+
+
+
+        </div>
+
+        <!-- 6. توعية -->
+        <div id="page-awareness" class="page-view">
+            <div class="back-home-bar"><button class="back-btn" onclick="switchPage('home')">← العودة للرئيسية</button></div>
+            
+
+<header>
+    <h1>🕌 التوعية الدينية والفقه الإسلامي | ANAS HAZEM.Z</h1>
+    <div class="header-actions">
+        <a href="index.html" class="btn-header">🏠 العودة للرئيسية</a>
+        <button class="btn-header" onclick="toggleDarkMode()" id="themeBtn">🌙 الوضع الليلي</button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="hero">
+        <h2>﴿ وَقُل رَّبِّ زِدْنِي عِلْمًا ﴾</h2>
+        <p>موسوعة ميسرة في التوعية الدينية وأحكام الفقه الإسلامي، تضم دروساً تأسيسية، وموسوعة شاملة لأكثر من 55 سؤالاً وجواباً فقهياً وعقدياً، واختباراً تفاعلياً لقياس المعرفة الشرعية.</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('faq', this)">❓ موسوعة الأسئلة الفقهية (55+ سؤال)</button>
+        <button class="tab-btn" onclick="switchTab('quiz', this)">🎯 الاختبار التفاعلي الشامل (30 سؤال)</button>
+        <button class="tab-btn" onclick="switchTab('lessons', this)">📖 الدروس التوعوية الأساسية</button>
+    </div>
+
+    <!-- القسم الأول: موسوعة الأسئلة والأجوبة -->
+    <div id="tab-faq" class="section-content active">
+        <div class="filter-bar">
+            <input type="text" id="faqSearch" oninput="renderFAQs()" placeholder="ابحث في الأسئلة (مثال: الوضوء، التيمم، الزكاة، السهو، الصيام، العقيدة...)">
+            <select id="faqCategory" onchange="renderFAQs()">
+                <option value="all">جميع الأبواب الفقهية</option>
+                <option value="الطهارة">الطهارة والوضوء</option>
+                <option value="الصلاة">أحكام الصلاة</option>
+                <option value="الزكاة">الزكاة والصدقات</option>
+                <option value="الصيام">أحكام الصيام</option>
+                <option value="الحج والعمرة">الحج والعمرة</option>
+                <option value="العقيدة">العقيدة والتوحيد</option>
+                <option value="المعاملات والأخلاق">المعاملات والأخلاق</option>
+            </select>
+            <div class="stats-badge" id="faqCountBadge">العدد: 0 سؤال</div>
+        </div>
+        <div id="faqContainer"></div>
+    </div>
+
+    <!-- القسم الثاني: الاختبار التفاعلي -->
+    <div id="tab-quiz" class="section-content">
+        <div class="quiz-box">
+            <div class="quiz-header">
+                <span id="quizProgress" style="font-weight:bold;">السؤال 1 من 30</span>
+                <span id="quizScore" style="background:var(--gold); color:#fff; padding:4px 12px; border-radius:20px; font-weight:bold;">النتيجة: 0</span>
+            </div>
+            <div id="quizBody">
+                <div class="quiz-q-text" id="quizQuestion"></div>
+                <div class="quiz-options" id="quizOptions"></div>
+                <div class="quiz-feedback" id="quizFeedback"></div>
+                <div class="quiz-controls">
+                    <button class="btn-primary" onclick="restartQuiz()" style="background:var(--gold);">إعادة الاختبار</button>
+                    <button class="btn-primary" id="nextQBtn" onclick="nextQuestion()" style="display:none;">السؤال التالي ⬅️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- القسم الثالث: الدروس التوعوية -->
+    <div id="tab-lessons" class="section-content">
+        <div class="lessons-grid">
+            <div class="lesson-card">
+                <h3>1. فقه الطهارة والوضوء</h3>
+                <ul>
+                    <li><strong>فروض الوضوء:</strong> غسل الوجه، غسل اليدين إلى المرفقين، مسح الرأس، غسل الرجلين إلى الكعبين، الترتيب، والموالاة.</li>
+                    <li><strong>نواقض الوضوء:</strong> الخارج من السبيلين، النوم المستغرق، زوال العقل، وأكل لحم الإبل.</li>
+                    <li><strong>التيمم:</strong> يُشرع عند فقد الماء أو العجز عن استعماله لمرض أو برد شديد.</li>
+                </ul>
+                <div class="evidence">قال تعالى: ﴿ يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ ﴾</div>
+            </div>
+            <div class="lesson-card">
+                <h3>2. أركان الصلاة وواجباتها</h3>
+                <ul>
+                    <li><strong>أركان الصلاة (14 ركناً):</strong> القيام مع القدرة، تكبيرة الإحرام، قراءة الفاتحة، الركوع، الرفع منه، السجود على الأعضاء السبعة، والجلوس بين السجدتين.</li>
+                    <li><strong>الفرق بين الركن والواجب:</strong> الركن لا يسقط سهواً ولا عمداً، أما الواجب فيُجبر بسجود السهو إذا تُرك سهواً.</li>
+                </ul>
+                <div class="evidence">قال ﷺ: «صلوا كما رأيتموني أصلي» (رواه البخاري)</div>
+            </div>
+            <div class="lesson-card">
+                <h3>3. فقه الزكاة والصيام</h3>
+                <ul>
+                    <li><strong>شروط وجوب الزكاة:</strong> الإسلام، الحرية، ملك النصاب، وحولان الحول (مرور عام هجري كامل) على الأموال النقدية وعروض التجارة.</li>
+                    <li><strong>مبطلات الصيام:</strong> الأكل والشرب عمداً، الجماع، القيء عمداً، وخروج دم الحيض والنفاس.</li>
+                </ul>
+                <div class="evidence">قال تعالى: ﴿ وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ ﴾</div>
+            </div>
+            <div class="lesson-card">
+                <h3>4. أصول العقيدة الإسلامية</h3>
+                <ul>
+                    <li><strong>أركان الإيمان الستة:</strong> الإيمان بالله، وملائكته، وكتبه، ورسله، واليوم الآخر، والقدر خيره وشره.</li>
+                    <li><strong>أقسام التوحيد:</strong> توحيد الربوبية، توحيد الألوهية (إفراد الله بالعبادة)، وتوحيد الأسماء والصفات.</li>
+                </ul>
+                <div class="evidence">قال تعالى: ﴿ قُلْ هُوَ اللَّهُ أَحَدٌ ﴾</div>
+            </div>
+            <div class="lesson-card">
+                <h3>5. فقه المعاملات والأخلاق</h3>
+                <ul>
+                    <li><strong>الأصل في المعاملات:</strong> الإباحة والحل ما لم يرد دليل يحرمها، ويحرم فيها الربا، والغرر، والغش، وأكل أموال الناس بالباطل.</li>
+                    <li><strong>حقوق المسلم:</strong> رد السلام، عيادة المريض، اتباع الجنائز، إجابة الدعوة، وتشميت العاطس.</li>
+                </ul>
+                <div class="evidence">قال ﷺ: «إنما بعثت لأتمم صالح الأخلاق»</div>
+            </div>
+            <div class="lesson-card">
+                <h3>6. التوعية الإيمانية والرقائق</h3>
+                <ul>
+                    <li><strong>الإحسان:</strong> أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك.</li>
+                    <li><strong>شروط قبول العمل الصالح:</strong> الإخلاص لله تعالى، والمتابعة لسنة النبي ﷺ.</li>
+                </ul>
+                <div class="evidence">قال تعالى: ﴿ فَمَن كَانَ يَرْجُو لِقَاءَ رَبِّهِ فَلْيَعْمَلْ عَمَلًا صَالِحًا وَلَا يُشْرِكْ بِعِبَادَةِ رَبِّهِ أَحَدًا ﴾</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    موقع ANAS HAZEM.Z الإسلامي - قسم التوعية الدينية والفقه الإسلامي
+</footer>
+
+
+
+
+        </div>
+
+        <!-- 7. مترجم -->
+        <div id="page-translator" class="page-view">
+            <div class="back-home-bar"><button class="back-btn" onclick="switchPage('home')">← العودة للرئيسية</button></div>
+            
+    <header>
+        <h1>🕌 المترجم والقاموس الإسلامي | ANAS HAZEM.Z</h1>
+        <div class="header-btns">
+            <a href="index.html" class="btn-nav">🏠 العودة للرئيسية</a>
+            <button class="btn-theme" onclick="toggleTheme()" id="themeBtn">🌙 الوضع الليلي</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2 class="section-title">🌐 المترجم الإسلامي الفوري</h2>
+            <div class="lang-bar">
+                <select id="fromLang">
+                    <option value="ar">العربية</option>
+                    <option value="en">الإنجليزية</option>
+                    <option value="fr">الفرنسية</option>
+                    <option value="ur">الأردية</option>
+                    <option value="tr">التركية</option>
+                    <option value="id">الإندونيسية</option>
+                </select>
+                <button class="btn-sec" style="margin-top:0;" onclick="swapLangs()" title="تبديل اللغتين">⇄</button>
+                <select id="toLang">
+                    <option value="en">الإنجليزية</option>
+                    <option value="ar">العربية</option>
+                    <option value="fr">الفرنسية</option>
+                    <option value="ur">الأردية</option>
+                    <option value="tr">التركية</option>
+                    <option value="id">الإندونيسية</option>
+                </select>
+            </div>
+            <div class="trans-grid">
+                <div>
+                    <textarea id="srcText" placeholder="اكتب النص أو المصطلح الإسلامي هنا..."></textarea>
+                    <button class="btn-action" onclick="doTranslate()">ترجم الآن</button>
+                </div>
+                <div>
+                    <textarea id="resText" readonly placeholder="ستظهر الترجمة هنا..."></textarea>
+                    <button class="btn-sec" onclick="speakText()">🔊 نطق صوتي</button>
+                    <button class="btn-sec" onclick="copyText()" id="copyBtn">📋 نسخ الترجمة</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="section-title">📚 قاموس المصطلحات الفقهية والعقدية</h2>
+            <div class="dict-controls">
+                <input type="text" id="searchDict" oninput="renderDict()" placeholder="ابحث عن مصطلح (مثل: التوحيد، الركن، الشرط، الإحسان...)">
+                <select id="catFilter" onchange="renderDict()">
+                    <option value="all">جميع التصنيفات</option>
+                    <option value="عقيدة">العقيدة</option>
+                    <option value="فقه">الفقه</option>
+                </select>
+            </div>
+            <div id="dictList"></div>
+        </div>
+    </div>
+
+    
+
+        </div>
+
+        <!-- 8. عن الموقع -->
+        <div id="page-about" class="page-view">
+            <div class="back-home-bar"><button class="back-btn" onclick="switchPage('home')">← العودة للرئيسية</button></div>
+            
+
+    <header>
+        <h1>🕌 تفاصيل عنا | ANAS HAZEM.Z</h1>
+        <div class="header-actions">
+            <a href="index.html" class="btn-header">🏠 العودة للرئيسية</a>
+            <button class="btn-header" id="themeBtn" onclick="toggleTheme()">🌙 الوضع الليلي</button>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- القسم الترحيبي -->
+        <section class="hero-box">
+            <div class="bismillah">﴿ بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ ﴾</div>
+            <div class="site-brand">منصة ANAS HAZEM.Z الإسلامية</div>
+            <p class="hero-desc">
+                منصة إسلامية رقمية متكاملة تهدف إلى تقديم العلم الشرعي الموثوق، وتيسير تلاوة القرآن الكريم، وتوفير الأذكار اليومية والأدوات التعليمية بأسلوب عصري مبسط ومريح للعين.
+            </p>
+        </section>
+
+        <!-- رؤيتنا وقيمنا -->
+        <section class="section-card">
+            <h2 class="section-title">🌟 رؤيتنا وأهدافنا</h2>
+            <div class="values-grid">
+                <div class="value-item">
+                    <span class="value-icon">📜</span>
+                    <h3>الموثوقية الشرعية</h3>
+                    <p>الالتزام بتقديم النصوص القرآنية بالرسم العثماني الدقيق، والمعلومات الفقهية والعقدية المستندة إلى الكتاب والسنة بفهم سليم وميسر.</p>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">⚡</span>
+                    <h3>السرعة والعمل بدون إنترنت</h3>
+                    <p>تصميم تقني خفيف وسريع يعمل بسلاسة على جميع الهواتف وأجهزة الكمبيوتر، مع دعم التصفح بدون إنترنت للوصول الدائم للمحتوى.</p>
+                </div>
+                <div class="value-item">
+                    <span class="value-icon">🎓</span>
+                    <h3>التعلم التفاعلي</h3>
+                    <p>إثراء تجربة الزائر بأدوات تفاعلية مثل الاختبارات الفقهية، القاموس الشرعي، والمترجم الإسلامي لخدمة الناطقين بالعربية وغيرها.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- دليل أقسام الموقع -->
+        <section class="section-card">
+            <h2 class="section-title">🧭 دليل أقسام الموقع</h2>
+            <div class="sections-list">
+                <div class="dir-card">
+                    <div>
+                        <h4>📖 المصحف الشريف</h4>
+                        <p>قراءة القرآن الكريم كاملاً (114 سورة) بالرسم العثماني مع التحكم بحجم الخط والتنقل السريع.</p>
+                    </div>
+                    <a href="quran.html" class="dir-link">الانتقال للمصحف</a>
+                </div>
+
+                <div class="dir-card">
+                    <div>
+                        <h4>⚖️ التوعية والفقه الإسلامي</h4>
+                        <p>موسوعة تضم عشرات الأسئلة والأجوبة الفقهية والعقدية، مدعمة باختبار تفاعلي شامل.</p>
+                    </div>
+                    <a href="islamic-awareness-v2.html" class="dir-link">الانتقال للتوعية والفقه</a>
+                </div>
+
+                <div class="dir-card">
+                    <div>
+                        <h4>🌐 المترجم والقاموس الإسلامي</h4>
+                        <p>ترجمة فورية للنصوص بين لغات متعددة مع نطق صوتي وقاموس مخصص للمصطلحات الشرعية.</p>
+                    </div>
+                    <a href="islamic-translator.html" class="dir-link">الانتقال للمترجم</a>
+                </div>
+
+                <div class="dir-card">
+                    <div>
+                        <h4>📿 أذكار الصباح والمساء</h4>
+                        <p>حصن المسلم اليومي من الأذكار والأدعية المأثورة بتصميم هادئ ومريح للقراءة اليومية.</p>
+                    </div>
+                    <a href="index.html" class="dir-link">تصفح من الرئيسية</a>
+                </div>
+
+                <div class="dir-card">
+                    <div>
+                        <h4>🕌 السيرة والأحاديث النبوية</h4>
+                        <p>محطات مضيئة من سيرة النبي ﷺ ومختارات من الأحاديث النبوية الصحيحة وشرحها.</p>
+                    </div>
+                    <a href="index.html" class="dir-link">تصفح من الرئيسية</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- كلمة المؤسس -->
+        <section class="section-card">
+            <h2 class="section-title">✍️ كلمة القائمين على الموقع</h2>
+            <div class="founder-box">
+                <h3>رسالة شكر ودعاء</h3>
+                <p>
+                    نسأل الله تعالى أن يجعل هذا العمل خالصاً لوجهه الكريم، وأن ينفع به كل من زاره أو قرأ فيه حرفاً أو تعلم منه مسألة من أمور دينه. تم تطوير هذا الموقع ليكون صدقة جارية ومنارة معرفية سهلة الوصول للجميع.
+                </p>
+                <div class="signature">إدارة وتطوير: ANAS HAZEM.Z</div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        جميع الحقوق محفوظة © موقع <strong>ANAS HAZEM.Z</strong> الإسلامي
+    </footer>
+
+    
+
+
+        </div>
+
+    </div>
+
+    <script>
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.nav-tab-btn').forEach(b => b.classList.remove('active'));
+            
+            const target = document.getElementById('page-' + pageId);
+            if (target) target.classList.add('active');
+            
+            const btns = document.querySelectorAll('.global-nav-links .nav-tab-btn');
+            const map = { 'home': 0, 'azkar': 1, 'quran': 2, 'ahadith': 3, 'seerah': 4, 'awareness': 5, 'translator': 6, 'about': 7 };
+            if (map[pageId] !== undefined && btns[map[pageId]]) {
+                btns[map[pageId]].classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleGlobalTheme() {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            document.getElementById('globalThemeBtn').textContent = isDark ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي';
+            localStorage.setItem('site_theme', isDark ? 'dark' : 'light');
+        }
+
+        if (localStorage.getItem('site_theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            const btn = document.getElementById('globalThemeBtn');
+            if (btn) btn.textContent = '☀️ الوضع النهاري';
+        }
+
+        // دمج السكربتات الفرعية
+        
+    const morningAzkar = [
+        { text: "﴿اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾", note: "آية الكرسي - تُقرأ مرة واحدة", target: 1 },
+        { text: "﴿قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ﴾", note: "سورة الإخلاص - تُقرأ ثلاث مرات", target: 3 },
+        { text: "﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾", note: "سورة الفلق - تُقرأ ثلاث مرات", target: 3 },
+        { text: "﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ﴾", note: "سورة الناس - تُقرأ ثلاث مرات", target: 3 },
+        { text: "«أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ».", note: "سيد الاستغفار - يُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ إِنِّي أَصْبَحْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ».", note: "تُقرأ أربع مرات", target: 4 },
+        { text: "«اللَّهُمَّ مَا أَصْبَحَ بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ، وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَهَ إِلَّا أَنْتَ».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ».", note: "تُقرأ سبع مرات", target: 7 },
+        { text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي، وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ، وَمِنْ خَلْفِي، وَعَنْ يَمِينِي، وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءًا، أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذَا الْيَوْمِ: فَتْحَهُ، وَنَصْرَهُ، وَنُورَهُ، وَبَرَكَتَهُ، وَهُدَاهُ، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهِ وَشَرِّ مَا بَعْدَهُ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«أَصْبَحْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«سُبْحَانَ اللَّهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ، وَمِدَادَ كَلِمَاتِهِ».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ».", note: "تُقرأ مائة مرة", target: 100 },
+        { text: "«سُبْحَانَ اللَّهِ وَبِحَمْدِهِ».", note: "تُقرأ مائة مرة", target: 100 },
+        { text: "«لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ».", note: "تُقرأ عشر مرات أو مائة مرة", target: 100 },
+        { text: "«اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ».", note: "تُقرأ عشر مرات", target: 10 }
+    ];
+
+    const eveningAzkar = [
+        { text: "﴿اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ﴾", note: "آية الكرسي - تُقرأ مرة واحدة", target: 1 },
+        { text: "﴿قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ﴾", note: "سورة الإخلاص - تُقرأ ثلاث مرات", target: 3 },
+        { text: "﴿قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ﴾", note: "سورة الفلق - تُقرأ ثلاث مرات", target: 3 },
+        { text: "﴿قُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ﴾", note: "سورة الناس - تُقرأ ثلاث مرات", target: 3 },
+        { text: "«أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، رَبِّ أَسْأَلُكَ خَيْرَ مَا فِي هَذِهِ اللَّيْلَةِ وَخَيْرَ مَا بَعْدَهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِي هَذِهِ اللَّيْلَةِ وَشَرِّ مَا بَعْدَهَا، رَبِّ أَعُوذُ بِكَ مِنَ الْكَسَلِ وَسُوءِ الْكِبَرِ، رَبِّ أَعُوذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ أَصْبَحْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ بِذَنْبِي فَاغْفِرْ لِي فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ».", note: "سيد الاستغفار - يُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ إِنِّي أَمْسَيْتُ أُشْهِدُكَ، وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلَائِكَتَكَ، وَجَمِيعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللَّهُ لَا إِلَهَ إِلَّا أَنْتَ وَحْدَكَ لَا شَرِيكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُولُكَ».", note: "تُقرأ أربع مرات", target: 4 },
+        { text: "«اللَّهُمَّ مَا أَمْسَى بِي مِنْ نِعْمَةٍ أَوْ بِأَحَدٍ مِنْ خَلْقِكَ فَمِنْكَ وَحْدَكَ لَا شَرِيكَ لَكَ، فَلَكَ الْحَمْدُ وَلَكَ الشُّكْرُ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ عَافِنِي فِي بَدَنِي، اللَّهُمَّ عَافِنِي فِي سَمْعِي، اللَّهُمَّ عَافِنِي فِي بَصَرِي، لَا إِلَهَ إِلَّا أَنْتَ. اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْكُفْرِ، وَالْفَقْرِ، وَأَعُوذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، لَا إِلَهَ إِلَّا أَنْتَ».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ».", note: "تُقرأ سبع مرات", target: 7 },
+        { text: "«اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَالْآخِرَةِ، اللَّهُمَّ إِنِّي أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي، اللَّهُمَّ اسْتُرْ عَوْرَاتِي، وَآمِنْ رَوْعَاتِي، اللَّهُمَّ احْفَظْنِي مِنْ بَيْنِ يَدَيَّ، وَمِنْ خَلْفِي، وَعَنْ يَمِينِي، وَعَنْ شِمَالِي، وَمِنْ فَوْقِي، وَأَعُوذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِي».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«اللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَاوَاتِ وَالْأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيكَهُ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِي سُوءًا، أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«يَا حَيُّ يَا قَيُّومُ بِرَحْمَتِكَ أَسْتَغِيثُ أَصْلِحْ لِي شَأْنِي كُلَّهُ وَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ رَبِّ الْعَالَمِينَ، اللَّهُمَّ إِنِّي أَسْأَلُكَ خَيْرَ هَذِهِ اللَّيْلَةِ: فَتْحَهَا، وَنَصْرَهَا، وَنُورَهَا، وَبَرَكَتَهَا، وَهُدَاهَا، وَأَعُوذُ بِكَ مِنْ شَرِّ مَا فِيهَا وَشَرِّ مَا بَعْدَهَا».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«أَمْسَيْنَا عَلَى فِطْرَةِ الْإِسْلَامِ، وَعَلَى كَلِمَةِ الْإِخْلَاصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إِبْرَاهِيمَ حَنِيفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِينَ».", note: "تُقرأ مرة واحدة", target: 1 },
+        { text: "«أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ».", note: "تُقرأ ثلاث مرات", target: 3 },
+        { text: "«أَسْتَغْفِرُ اللَّهَ وَأَتُوبُ إِلَيْهِ».", note: "تُقرأ مائة مرة", target: 100 },
+        { text: "«سُبْحَانَ اللَّهِ وَبِحَمْدِهِ».", note: "تُقرأ مائة مرة", target: 100 },
+        { text: "«لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ».", note: "تُقرأ عشر مرات أو مائة مرة", target: 100 },
+        { text: "«اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ».", note: "تُقرأ عشر مرات", target: 10 }
+    ];
+
+    let currentMode = 'morning';
+    let progressState = JSON.parse(localStorage.getItem('fullAzkarState')) || {
+        morning: new Array(morningAzkar.length).fill(0),
+        evening: new Array(eveningAzkar.length).fill(0)
+    };
+
+    function switchMode(mode) {
+        currentMode = mode;
+        document.getElementById('btnMorning').classList.toggle('active', mode === 'morning');
+        document.getElementById('btnEvening').classList.toggle('active', mode === 'evening');
+        renderAzkar();
+    }
+
+    function renderAzkar() {
+        const listContainer = document.getElementById('azkarList');
+        listContainer.innerHTML = '';
+        const activeList = currentMode === 'morning' ? morningAzkar : eveningAzkar;
+        const counts = progressState[currentMode];
+        let completedCount = 0;
+
+        activeList.forEach((item, index) => {
+            const current = counts[index] || 0;
+            const isDone = current >= item.target;
+            if (isDone) completedCount++;
+
+            const card = document.createElement('div');
+            card.className = `zikr-card ${isDone ? 'completed' : ''}`;
+            card.onclick = () => incrementCount(index);
+
+            card.innerHTML = `
+                <div class="zikr-text">${item.text}</div>
+                <div class="zikr-note">${item.note}</div>
+                <div class="card-footer">
+                    <div class="counter-badge">${current} / ${item.target}</div>
+                    <div class="actions">
+                        <button class="btn-count" onclick="event.stopPropagation(); incrementCount(${index})">
+                            ${isDone ? 'مُكتمل ✓' : 'سبّح'}
+                        </button>
+                        <button class="btn-reset-single" title="إعادة" onclick="event.stopPropagation(); resetSingle(${index})">↺</button>
+                    </div>
+                </div>
+            `;
+            listContainer.appendChild(card);
+        });
+
+        document.getElementById('totalProgress').innerText = `المُنجز: ${completedCount} من ${activeList.length}`;
+        localStorage.setItem('fullAzkarState', JSON.stringify(progressState));
+    }
+
+    function incrementCount(index) {
+        const activeList = currentMode === 'morning' ? morningAzkar : eveningAzkar;
+        if (progressState[currentMode][index] < activeList[index].target) {
+            progressState[currentMode][index]++;
+            if (navigator.vibrate) navigator.vibrate(30);
+            renderAzkar();
+        }
+    }
+
+    function resetSingle(index) {
+        progressState[currentMode][index] = 0;
+        renderAzkar();
+    }
+
+    function resetAll() {
+        if (confirm('هل تريد تصفير جميع عدادات هذا القسم؟')) {
+            const activeList = currentMode === 'morning' ? morningAzkar : eveningAzkar;
+            progressState[currentMode] = new Array(activeList.length).fill(0);
+            renderAzkar();
+        }
+    }
+
+    renderAzkar();
+
+
+        let currentSurah = 1, currentFontSize = 1.9;
+        const surahSelect = document.getElementById('surahSelect');
+        const contentArea = document.getElementById('contentArea');
+
+        async function initQuran() {
+            try {
+                let list = localStorage.getItem('quran_list');
+                if (!list) {
+                    const res = await fetch('https://api.alquran.cloud/v1/surah');
+                    const json = await res.json();
+                    list = JSON.stringify(json.data);
+                    localStorage.setItem('quran_list', list);
+                }
+                surahSelect.innerHTML = '';
+                JSON.parse(list).forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s.number;
+                    const type = s.revelationType === 'Meccan' ? 'مكية' : 'مدنية';
+                    opt.textContent = `${s.number}. ${s.name} (${type} - ${s.numberOfAyahs} آية)`;
+                    surahSelect.appendChild(opt);
+                });
+                loadSurah(localStorage.getItem('last_surah') || 1);
+            } catch (e) {
+                contentArea.innerHTML = '<div class="loading">يرجى الاتصال بالإنترنت لأول مرة لتحميل السور وحفظها.</div>';
+            }
+        }
+
+        async function loadSurah(num) {
+            currentSurah = parseInt(num);
+            surahSelect.value = currentSurah;
+            localStorage.setItem('last_surah', currentSurah);
+            document.getElementById('prevBtn').disabled = currentSurah <= 1;
+            document.getElementById('nextBtn').disabled = currentSurah >= 114;
+            contentArea.innerHTML = '<div class="loading">جاري تحميل الآيات...</div>';
+            try {
+                let cached = localStorage.getItem('surah_' + currentSurah);
+                let s;
+                if (cached) {
+                    s = JSON.parse(cached);
+                } else {
+                    const res = await fetch(`https://api.alquran.cloud/v1/surah/${currentSurah}/quran-uthmani`);
+                    const json = await res.json();
+                    s = json.data;
+                    localStorage.setItem('surah_' + currentSurah, JSON.stringify(s));
+                }
+                const type = s.revelationType === 'Meccan' ? 'مكية' : 'مدنية';
+                let html = `<div class="surah-header"><div class="surah-title">${s.name}</div><div class="surah-info">سورة ${type} • عدد آياتها: ${s.numberOfAyahs}</div></div>`;
+                if (currentSurah !== 1 && currentSurah !== 9) {
+                    html += `<div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>`;
+                }
+                html += `<div class="ayahs-container" id="ayahsText" style="font-size: ${currentFontSize}rem;">`;
+                s.ayahs.forEach(a => {
+                    let t = a.text;
+                    if (currentSurah !== 1 && a.numberInSurah === 1) {
+                        t = t.replace('بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ ', '');
+                    }
+                    html += `${t} <span class="ayah-number">${a.numberInSurah}</span> `;
+                });
+                contentArea.innerHTML = html + '</div>';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } catch (e) {
+                contentArea.innerHTML = '<div class="loading">تعذر تحميل السورة بدون إنترنت.</div>';
+            }
+        }
+
+        function navigateSurah(step) {
+            const target = currentSurah + step;
+            if (target >= 1 && target <= 114) loadSurah(target);
+        }
+
+        function changeFontSize(d) {
+            currentFontSize = Math.max(1.2, Math.min(3.2, currentFontSize + d * 0.1));
+            const el = document.getElementById('ayahsText');
+            if (el) el.style.fontSize = `${currentFontSize}rem`;
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.getElementById('themeBtn').textContent = document.body.classList.contains('dark-mode') ? '☀️ نهاري' : '🌙 ليلي';
+        }
+
+        initQuran();
+    
+
+    const hadithDatabase = [
+        {
+            topic: "بر الوالدين",
+            items: [
+                {
+                    narrator: "عن عبد الله بن مسعود رضي الله عنه قال:",
+                    text: "سألت النبي ﷺ: أي العمل أحب إلى الله؟ قال: <span class='prophetic-quote'>«الصَّلَاةُ علَى وقْتِهَا»</span>، قال: ثم أي؟ قال: <span class='prophetic-quote'>«ثُمَّ برُّ الوَالِدَيْنِ»</span>، قال: ثم أي؟ قال: <span class='prophetic-quote'>«الجِهَادُ في سَبيلِ اللَّهِ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال:",
+                    text: "جاء رجل إلى رسول الله ﷺ فقال: يا رسول الله، من أحق الناس بحسن صحابتي؟ قال: <span class='prophetic-quote'>«أُمُّكَ»</span>، قال: ثم من؟ قال: <span class='prophetic-quote'>«ثُمَّ أُمُّكَ»</span>، قال: ثم من؟ قال: <span class='prophetic-quote'>«ثُمَّ أُمُّكَ»</span>، قال: ثم من؟ قال: <span class='prophetic-quote'>«ثُمَّ أبُوكَ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«رَغِمَ أنْفُ، ثُمَّ رَغِمَ أنْفُ، ثُمَّ رَغِمَ أنْفُ»</span>، قيل: من يا رسول الله؟ قال: <span class='prophetic-quote'>«مَن أدْرَكَ أبَوَيْهِ عِنْدَ الكِبَرِ، أحَدَهُما أوْ كِلَيْهِما فَلَمْ يَدْخُلِ الجَنَّةَ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن عبد الله بن عمرو رضي الله عنهما عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«رِضَا الرَّبِّ في رِضَا الوالد، وسَخَطُ الرَّبِّ في سَخَطِ الوالد»</span>.",
+                    source: "رواه الترمذي وصححه الألباني، وأخرجه البخاري في الأدب المفرد"
+                },
+                {
+                    narrator: "عن أبي الدرداء رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«الوالدُ أوسطُ أبوابِ الجنةِ، فإن شئتَ فأضِعْ ذلك البابَ أو احفظْه»</span>.",
+                    source: "رواه الترمذي وابن ماجه وصححه الألباني"
+                }
+            ]
+        },
+        {
+            topic: "كبائر الذنوب",
+            items: [
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«اجْتَنِبُوا السَّبْعَ المُوبِقَاتِ»</span>، قالوا: يا رسول الله وما هن؟ قال: <span class='prophetic-quote'>«الشِّرْكُ باللَّهِ، والسِّحْرُ، وقَتْلُ النَّفْسِ الَّتي حَرَّمَ اللَّهُ إلَّا بالحَقِّ، وأَكْلُ الرِّبَا، وأَكْلُ مَالِ اليَتِيمِ، والتَّوَلِّي يَومَ الزَّحْفِ، وقَذْفُ المُحْصَنَاتِ المُؤْمِنَاتِ الغَافِلَاتِ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن أبي بكرة نفيع بن الحارث رضي الله عنه قال:",
+                    text: "قال النبي ﷺ: <span class='prophetic-quote'>«أَلَا أُنَبِّئُكُمْ بِأَكْبَرِ الكَبَائِرِ؟»</span> ثلاثًا، قالوا: بلى يا رسول الله، قال: <span class='prophetic-quote'>«الإِشْرَاكُ باللَّهِ، وَعُقُوقُ الوَالِدَيْنِ»</span>، وجلس وكان متكئًا فقال: <span class='prophetic-quote'>«أَلَا وَقَوْلُ الزُّورِ»</span>، فما زال يكررها حتى قلنا: ليته سكت.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن عبد الله بن مسعود رضي الله عنه قال:",
+                    text: "سألت النبي ﷺ: أي الذنب أعظم عند الله؟ قال: <span class='prophetic-quote'>«أن تجعل لله ندًّا وهو خلقك»</span>، قلت: إن ذلك لعظيم، قلت: ثم أي؟ قال: <span class='prophetic-quote'>«وأن تقتل ولدك تخاف أن يطعم معك»</span>، قلت: ثم أي؟ قال: <span class='prophetic-quote'>«أن تزاني حليلة جارك»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن عبد الله بن عمرو رضي الله عنهما قال:",
+                    text: "جاء أعرابي إلى النبي ﷺ فقال: يا رسول الله، ما الكبائر؟ قال: <span class='prophetic-quote'>«الإشراك بالله»</span>، قال: ثم ماذا؟ قال: <span class='prophetic-quote'>«ثم عقوق الوالدين»</span>، قال: ثم ماذا؟ قال: <span class='prophetic-quote'>«اليمين الغموس»</span>، قلت: وما اليمين الغموس؟ قال: <span class='prophetic-quote'>«الذي يقتطع مال امرئ مسلم، هو فيها كاذب»</span>.",
+                    source: "رواه البخاري"
+                },
+                {
+                    narrator: "عن أنس بن مالك رضي الله عنه عن النبي ﷺ في الكبائر قال:",
+                    text: "<span class='prophetic-quote'>«الشِّرْكُ باللَّهِ، وعُقُوقُ الوَالِدَيْنِ، وقَتْلُ النَّفْسِ، وقَوْلُ الزُّورِ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                }
+            ]
+        },
+        {
+            topic: "النظافة والطهارة",
+            items: [
+                {
+                    narrator: "عن أبي مالك الأشعري رضي الله عنه قال:",
+                    text: "قال رسول الله ﷺ: <span class='prophetic-quote'>«الطُّهُورُ شَطْرُ الإيمَانِ...»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن سعد بن أبي وقاص رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«إنَّ اللهَ طَيِّبٌ يُحِبُّ الطَّيِّبَ، نَظِيفٌ يُحِبُّ النَّظَافَةَ، كَرِيمٌ يُحِبُّ الكَرَمَ، جَوَادٌ يُحِبُّ الجُودَ، فَنَظِّفُوا أفْنِيَتَكُمْ»</span>.",
+                    source: "رواه الترمذي وحسنه الألباني لغيره"
+                },
+                {
+                    narrator: "عن أبو هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«لَا يَقْبَلُ اللَّهُ صَلَاةَ أحَدِكُمْ إذَا أحْدَثَ حتَّى يَتَوَضَّأَ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«لَوْلَا أنْ أشُقَّ علَى أُمَّتي أوْ علَى النَّاسِ لَأَمَرْتُهُمْ بالسِّوَاكِ مع كُلِّ صَلَاةٍ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن عائشة أم المؤمنين رضي الله عنها عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«السِّوَاكُ مَطْهَرَةٌ لِلْفَمِ مَرْضَاةٌ لِلرَّبِّ»</span>.",
+                    source: "رواه النسائي وأحمد وصححه الألباني، وعلّقه البخاري مجزومًا به"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«حَقٌّ علَى كُلِّ مُسْلِمٍ أنْ يَغْتَسِلَ في كُلِّ سَبْعَةِ أيَّامٍ يَوْمًا يَغْسِلُ فيه رَأْسَهُ وجَسَدَهُ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«إِذَا اسْتَيْقَظَ أَحَدُكُمْ مِنْ نَوْمِهِ فَلَا يَغْمِسْ يَدَهُ فِي الْإِنَاءِ حَتَّى يَغْسِلَهَا ثَلَاثًا، فَإِنَّهُ لَا يَدْرِي أَيْنَ بَاتَتْ يَدُهُ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«مَنْ كَانَ لَهُ شَعْرٌ فَلْيُكْرِمْهُ»</span> أي: ينظفه ويدّهنه ويسرّحه.",
+                    source: "رواه أبو داود وصححه الألباني"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«اتَّقُوا اللَّعَّانَيْنِ»</span>، قالوا: وما اللعّانان يا رسول الله؟ قال: <span class='prophetic-quote'>«الَّذِي يَتَخَلَّى في طَرِيقِ النَّاسِ، أوْ في ظِلِّهِمْ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«الإِيمَانُ بِضْعٌ وسَبْعُونَ شُعْبَةً، فأفْضَلُهَا قَوْلُ لا إلَهَ إلَّا اللَّهُ، وأَدْنَاهَا إمَاطَةُ الأذَى عَنِ الطَّرِيقِ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«لَا يَبُولَنَّ أَحَدُكُمْ فِي الْمَاءِ الدَّائِمِ الَّذِي لَا يَجْرِي، ثُمَّ يَغْتَسِلُ فِيهِ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن جابر بن عبد الله رضي الله عنهما قال:",
+                    text: "<span class='prophetic-quote'>«نَهَى رَسُولُ اللهِ ﷺ أَنْ يُبَالَ فِي الْمَاءِ الرَّاكِدِ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن معاذ بن جبل رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«اتَّقُوا الْمَلَاعِنَ الثَّلَاثَ: الْبَرَازَ فِي الْمَوَارِدِ، وَقَارِعَةِ الطَّرِيقِ، وَالظِّلِّ»</span>.",
+                    source: "رواه أبو داود وابن ماجه وحسنه الألباني"
+                }
+            ]
+        },
+        {
+            topic: "آداب الطعام والشراب",
+            items: [
+                {
+                    narrator: "عن عمر بن أبي سلمة رضي الله عنهما قال:",
+                    text: "كنت غلامًا في حجر رسول الله ﷺ، وكانت يدي تطيش في الصحفة، فقال لي رسول الله ﷺ: <span class='prophetic-quote'>«يَا غُلَامُ، سَمِّ اللَّهَ، وَكُلْ بِيَمِينِكَ، وَكُلْ مِمَّا يَلِيكَ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                },
+                {
+                    narrator: "عن عائشة أم المؤمنين رضي الله عنها أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«إِذَا أَكَلَ أَحَدُكُمْ فَلْيَذْكُرِ اسْمَ اللَّهِ تَعَالَى، فَإِنْ نَسِيَ أَنْ يَذْكُرَ اسْمَ اللَّهِ تَعَالَى فِي أَوَّلِهِ فَلْيَقُلْ: بِسْمِ اللَّهِ أَوَّلَهُ وَآخِرَهُ»</span>.",
+                    source: "رواه أبو داود والترمذي وصححه الألباني"
+                },
+                {
+                    narrator: "عن عبد الله بن عمر رضي الله عنهما أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«إِذَا أَكَلَ أَحَدُكُمْ فَلْيَأْكُلْ بِيَمِينِهِ، وَإِذَا شَرِبَ فَلْيَشْرَبْ بِيَمِينِهِ، فَإِنَّ الشَّيْطَانَ يَأْكُلُ بِشِمَالِهِ، وَيَشْرَبُ بِشِمَالِهِ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن سلمة بن الأكوع رضي الله عنه:",
+                    text: "أن رجلًا أكل عند رسول الله ﷺ بشماله، فقال: <span class='prophetic-quote'>«كُلْ بِيَمِينِكَ»</span>، قال: لا أستطيع، قال: <span class='prophetic-quote'>«لَا اسْتَطَعْتَ»</span>، ما منعه إلا الكبر، قال: فما رفعها إلى فيه.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال:",
+                    text: "<span class='prophetic-quote'>«مَا عَابَ النَّبِيُّ ﷺ طَعَامًا قَطُّ، إِنِ اشْتَهَاهُ أَكَلَهُ، وَإِنْ كَرِهَهُ تَرَكَهُ»</span>.",
+                    source: "متفق عليه: رواه البخاري ومسلم"
+                }
+            ]
+        },
+        {
+            topic: "الإخلاص والنية في العمل",
+            items: [
+                {
+                    narrator: "عن عمر بن الخطاب رضي الله عنه قال:",
+                    text: "سمعت رسول الله ﷺ يقول: <span class='prophetic-quote'>«إنَّما الأعْمالُ بالنِّيّاتِ، وإنَّما لِكُلِّ امْرِئٍ ما نَوَى، فمَن كانَتْ هِجْرَتُهُ إلى دُنْيا يُصِيبُها، أوْ إلى امْرَأَةٍ يَنْكِحُها، فَهِجْرَتُهُ إلى ما هاجَرَ إلَيْهِ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«إنَّ اللَّهَ لا يَنْظُرُ إلى صُوَرِكُمْ وأَمْوالِكُمْ، ولَكِنْ يَنْظُرُ إلى قُلُوبِكُمْ وأَعْمالِكُمْ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن أبي أمامة الباهلي رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«إنَّ اللَّهَ لا يَقْبَلُ مِنَ العَمَلِ إلَّا ما كانَ له خالِصًا، وابْتُغِيَ به وجْهُهُ»</span>.",
+                    source: "رواه النسائي وصححه الألباني"
+                },
+                {
+                    narrator: "عن سعد بن أبي وقاص رضي الله عنه أن رسول الله ﷺ قال له:",
+                    text: "<span class='prophetic-quote'>«وإنَّكَ لَنْ تُنْفِقَ نَفَقَةً تَبْتَغِي بها وجْهَ اللَّهِ إلَّا أُجِرْتَ عَلَيْها، حتَّى ما تَجْعَلُ في فَمِ امْرَأَتِكَ»</span>.",
+                    source: "متفق عليه"
+                }
+            ]
+        },
+        {
+            topic: "صلة الرحم",
+            items: [
+                {
+                    narrator: "عن أنس بن مالك رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«مَن أحَبَّ أنْ يُبْسَطَ له في رِزْقِهِ، ويُنْسَأَ له في أثَرِهِ، فَلْيَصِلْ رَحِمَهُ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن جبير بن مطعم رضي الله عنه أنه سمع النبي ﷺ يقول:",
+                    text: "<span class='prophetic-quote'>«لا يَدْخُلُ الجَنَّةَ قاطِعٌ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي أيوب الأنصاري رضي الله عنه:",
+                    text: "أن رجلاً قال للنبي ﷺ: أخبرني بعمل يُدخلني الجنة، فقال النبي ﷺ: <span class='prophetic-quote'>«تَعْبُدُ اللَّهَ ولا تُشْرِكُ به شيئًا، وتُقِيمُ الصَّلاةَ، وتُؤْتي الزَّكاةَ، وتَصِلُ الرَّحِمَ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن عبد الله بن عمرو رضي الله عنهما عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«ليسَ الواصِلُ بالمُكافِئِ، ولَكِنِ الواصِلُ الذي إذا قُطِعَتْ رَحِمُهُ وصَلَها»</span>.",
+                    source: "رواه البخاري"
+                }
+            ]
+        },
+        {
+            topic: "حسن الخلق والرفق",
+            items: [
+                {
+                    narrator: "عن أبي الدرداء رضي الله عنه أن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«ما شَيءٌ أثقَلُ في ميزانِ المُؤمِنِ يَومَ القيامةِ مِن خُلُقٍ حَسَنٍ، وإنَّ اللَّهَ لَيُبغِضُ الفاحِشَ البَذيءَ»</span>.",
+                    source: "رواه الترمذي وصححه الألباني"
+                },
+                {
+                    narrator: "عن عائشة رضي الله عنها قالت:",
+                    text: "سمعت رسول الله ﷺ يقول: <span class='prophetic-quote'>«إنَّ المُؤْمِنَ لَيُدْرِكُ بحُسْنِ خُلُقِهِ دَرَجَةَ الصَّائِمِ القَائِمِ»</span>.",
+                    source: "رواه أبو داود وصححه الألباني"
+                },
+                {
+                    narrator: "عن عائشة رضي الله عنها عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«إنَّ الرِّفْقَ لا يَكونُ في شيءٍ إلَّا زانَهُ، ولا يُنْزَعُ مِن شيءٍ إلَّا شانَهُ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن جرير بن عبد الله رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«مَن يُحْرَمِ الرِّفْقَ، يُحْرَمِ الخَيْرَ»</span>.",
+                    source: "رواه مسلم"
+                }
+            ]
+        },
+        {
+            topic: "حفظ اللسان وقول الخير",
+            items: [
+                {
+                    narrator: "عن سهل بن سعد الساعدي رضي الله عنه عن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«مَن يَضْمَنْ لي ما بيْنَ لَحْيَيْهِ وما بيْنَ رِجْلَيْهِ، أضْمَنْ له الجَنَّةَ»</span>.",
+                    source: "رواه البخاري"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«إنَّ العَبْدَ لَيَتَكَلَّمُ بالكَلِمَةِ مِن رِضْوانِ اللَّهِ، لا يُلْقِي لها بالًا، يَرْفَعُهُ اللَّهُ بها دَرَجاتٍ، وإنَّ العَبْدَ لَيَتَكَلَّمُ بالكَلِمَةِ مِن سَخَطِ اللَّهِ، لا يُلْقِي لها بالًا، يَهْوِي بها في جَهَنَّمَ»</span>.",
+                    source: "رواه البخاري"
+                },
+                {
+                    narrator: "عن معاذ بن جبل رضي الله عنه:",
+                    text: "أن النبي ﷺ أخذ بلسانه وقال: <span class='prophetic-quote'>«كُفَّ عَلَيْكَ هَذَا»</span>، فقلت: يا نبي الله، وإنا لمؤاخذون بما نتكلم به؟ فقال: <span class='prophetic-quote'>«ثَكِلَتْكَ أُمُّكَ يَا مُعَاذُ، وَهَلْ يَكُبُّ النَّاسَ في النَّارِ علَى وُجُوهِهِمْ -أوْ علَى مَنَاخِرِهِمْ- إلَّا حَصَائِدُ أَلْسِنَتِهِمْ»</span>.",
+                    source: "رواه الترمذي وصححه الألباني"
+                },
+                {
+                    narrator: "عن عبد الله بن عمرو رضي الله عنهما عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«المُسْلِمُ مَن سَلِمَ المُسْلِمُونَ مِن لِسانِهِ ويَدِهِ»</span>.",
+                    source: "متفق عليه"
+                }
+            ]
+        },
+        {
+            topic: "الصدق والأمانة",
+            items: [
+                {
+                    narrator: "عن حكيم بن حزام رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«البَيِّعانِ بالخِيارِ ما لَمْ يَتَفَرَّقا، فإنْ صَدَقا وبَيَّنا بُورِكَ لهما في بَيْعِهِما، وإنْ كَتَما وكَذَبا مُحِقَتْ بَرَكَةُ بَيْعِهِما»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن حذيفة بن اليمان رضي الله عنه قال:",
+                    text: "حدثنا رسول الله ﷺ حديثين: <span class='prophetic-quote'>«أنَّ الأمانَةَ نَزَلَتْ في جَذْرِ قُلُوبِ الرِّجالِ، ثُمَّ عَلِمُوا مِنَ القُرْآنِ، ثُمَّ عَلِمُوا مِنَ السُّنَّةِ... فَيَنامُ الرَّجُلُ النَّوْمَةَ فَتُقْبَضُ الأمانَةُ مِن قَلْبِهِ...»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«إذا ضُيِّعَتِ الأمانَةُ فانْتَظِرِ السَّاعَةَ»</span>، قال: كيف إضاعتها يا رسول الله؟ قال: <span class='prophetic-quote'>«إذا أُسْنِدَ الأمْرُ إلى غيرِ أهْلِهِ فانْتَظِرِ السَّاعَةَ»</span>.",
+                    source: "رواه البخاري"
+                },
+                {
+                    narrator: "عن بهز بن حكيم عن أبيه عن جده رضي الله عنه قال:",
+                    text: "سمعت رسول الله ﷺ يقول: <span class='prophetic-quote'>«وَيْلٌ لِلَّذِي يُحَدِّثُ فَيَكْذِبُ لِيُضْحِكَ بِهِ القَوْمَ، وَيْلٌ لَهُ، وَيْلٌ لَهُ»</span>.",
+                    source: "رواه أبو داود والترمذي وحسنه الألباني"
+                }
+            ]
+        },
+        {
+            topic: "الصبر والاحتساب عند الابتلاء",
+            items: [
+                {
+                    narrator: "عن صهيب بن سنان الرومي رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«عَجَبًا لأَمْرِ المُؤْمِنِ، إنَّ أمْرَهُ كُلَّهُ خَيْرٌ، وليسَ ذاكَ لأَحَدٍ إلَّا لِلْمُؤْمِنِ، إنْ أصابَتْهُ سَرَّاءُ شَكَرَ، فَكانَ خَيْرًا له، وإنْ أصابَتْهُ ضَرَّاءُ، صَبَرَ فَكانَ خَيْرًا له»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن أنس بن مالك رضي الله عنه:",
+                    text: "أن النبي ﷺ مرّ بامرأة تبكي عند قبر، فقال لها: <span class='prophetic-quote'>«اتَّقِي اللَّهَ واصْبِرِي»</span>... ثم قال ﷺ: <span class='prophetic-quote'>«إنَّما الصَّبْرُ عِنْدَ الصَّدْمَةِ الأُولَى»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي سعيد الخدري وأبي هريرة رضي الله عنهما عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«ما يُصِيبُ المُسْلِمَ، مِن نَصَبٍ ولا وصَبٍ، ولا هَمٍّ ولا حُزْنٍ ولا أذًى ولا غَمٍّ، حتَّى الشَّوْكَةِ يُشاكُها، إلَّا كَفَّرَ اللَّهُ بها مِن خَطاياهُ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أنس بن مالك رضي الله عنه عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«إنَّ عِظَمَ الجَزاءِ مع عِظَمِ البَلاءِ، وإنَّ اللَّهَ إذا أحَبَّ قَوْمًا ابْتَلاهُمْ، فمَن رَضِيَ فله الرِّضا، ومَن سَخِطَ فله السَّخَطُ»</span>.",
+                    source: "رواه الترمذي وحسنه الألباني"
+                }
+            ]
+        },
+        {
+            topic: "طلب العلم وفضله",
+            items: [
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«مَن سَلَكَ طَرِيقًا يَلْتَمِسُ فيه عِلْمًا، سَهَّلَ اللَّهُ له به طَرِيقًا إلى الجَنَّةِ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن معاوية بن أبي سفيان رضي الله عنهما قال:",
+                    text: "سمعت النبي ﷺ يقول: <span class='prophetic-quote'>«مَن يُرِدِ اللَّهُ به خَيْرًا يُفَقِّهْهُ في الدِّينِ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«إذا ماتَ الإنْسانُ انْقَطَعَ عنْه عَمَلُهُ إلَّا مِن ثَلاثَةٍ: إلَّا مِن صَدَقَةٍ جارِيَةٍ، أوْ عِلْمٍ يُنْتَفَعُ بِهِ، أوْ ولَدٍ صالِحٍ يَدْعُو له»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن أبي الدرداء رضي الله عنه قال:",
+                    text: "سمعت رسول الله ﷺ يقول: <span class='prophetic-quote'>«وإنَّ العالِمَ لَيَسْتَغْفِرُ لَهُ مَن في السَّمواتِ ومَن في الأرضِ، حتَّى الحيتانُ في الماءِ، وفَضْلُ العالِمِ على العابِدِ كفَضْلِ القَمَرِ على سائِرِ الكَواكِبِ»</span>.",
+                    source: "رواه أبو داود والترمذي وصححه الألباني"
+                }
+            ]
+        },
+        {
+            topic: "الإحسان إلى الجار",
+            items: [
+                {
+                    narrator: "عن عائشة رضي الله عنها عن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«ما زالَ جِبْرِيلُ يُوصِينِي بالجارِ، حتَّى ظَنَنْتُ أنَّه سَيُوَرِّثُهُ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«مَن كانَ يُؤْمِنُ باللَّهِ واليَومِ الآخِرِ فَلْيُحْسِنْ إلى جارِهِ»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي شريح الخزاعي رضي الله عنه أن النبي ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«واللَّهِ لا يُؤْمِنُ، واللَّهِ لا يُؤْمِنُ، واللَّهِ لا يُؤْمِنُ»</span>، قيل: ومن يا رسول الله؟ قال: <span class='prophetic-quote'>«الَّذي لا يَأْمَنُ جارُهُ بَوائِقَهُ»</span>.",
+                    source: "رواه البخاري"
+                },
+                {
+                    narrator: "عن أبي ذر الغفاري رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«يا أبا ذَرٍّ، إذا طَبَخْتَ مَرَقَةً، فأكْثِرْ ماءَها، وتَعاهَدْ جِيرانَكَ»</span>.",
+                    source: "رواه مسلم"
+                }
+            ]
+        },
+        {
+            topic: "قضاء حوائج الناس والتكافل",
+            items: [
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«مَن نَفَّسَ عن مُؤْمِنٍ كُرْبَةً مِن كُرَبِ الدُّنْيا، نَفَّسَ اللَّهُ عنْه كُرْبَةً مِن كُرَبِ يَومِ القِيامَةِ، ومَن يَسَّرَ على مُعْسِرٍ، يَسَّرَ اللَّهُ عليه في الدُّنْيا والآخِرَةِ، ومَن سَتَرَ مُسْلِمًا، سَتَرَهُ اللَّهُ في الدُّنْيا والآخِرَةِ، واللَّهُ في عَوْنِ العَبْدِ ما كانَ العَبْدُ في عَوْنِ أخِيهِ»</span>.",
+                    source: "رواه مسلم"
+                },
+                {
+                    narrator: "عن عبد الله بن عمر رضي الله عنهما أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«أحَبُّ النَّاسِ إلى اللَّهِ أنْفَعُهُمْ لِلنَّاسِ، وأحَبُّ الأعْمالِ إلى اللَّهِ سُرُورٌ تُدْخِلُهُ على مُسْلِمٍ، أوْ تَكْشِفُ عنْه كُرْبَةً، أوْ تَقْضِي عنْه دَيْنًا، أوْ تَطْرُدُ عنْه جُوعًا، ولَأَنْ أمْشِيَ مع أخٍ لي في حاجَةٍ أحَبُّ إلَيَّ مِن أنْ أعْتَكِفَ في هذا المَسْجِدِ -يعني مسجد المدينة- شَهْرًا»</span>.",
+                    source: "رواه الطبراني وحسنه الألباني"
+                },
+                {
+                    narrator: "عن النعمان بن بشير رضي الله عنهما قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«مَثَلُ المُؤْمِنِينَ في تَوادِّهِمْ، وتَراحُمِهِمْ، وتَعاطُفِهِمْ مَثَلُ الجَسَدِ؛ إذا اشْتَكَى منه عُضْوٌ تَداعَى له سائِرُ الجَسَدِ بالسَّهَرِ والحُمَّى»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«السَّاعِي علَى الأرْمَلَةِ والمِسْكِينِ، كالمُجاهِدِ في سَبيلِ اللَّهِ، أوِ القائِمِ اللَّيْلَ الصَّائِمِ النَّهارَ»</span>.",
+                    source: "متفق عليه"
+                }
+            ]
+        },
+        {
+            topic: "ذكر الله والاستغفار",
+            items: [
+                {
+                    narrator: "عن أبي موسى الأشعري رضي الله عنه قال النبي ﷺ:",
+                    text: "<span class='prophetic-quote'>«مَثَلُ الذي يَذْكُرُ رَبَّهُ والذي لا يَذْكُرُ رَبَّهُ، مَثَلُ الحَيِّ والمَيِّتِ»</span>.",
+                    source: "رواه البخاري"
+                },
+                {
+                    narrator: "عن أبي الدرداء رضي الله عنه قال النبي ﷺ:",
+                    text: "<span class='prophetic-quote'>«ألا أُنَبِّئُكُم بخيرِ أعمالِكُم، وأزكاها عِندَ مَليكِكُم، وأرفعِها في دَرَجاتِكُم، وخيرٌ لكُم مِن إنفاقِ الذَّهَبِ والوَرِقِ، وخيرٌ لكُم مِن أن تَلقَوا عَدُوَّكُم فتَضرِبوا أعناقَهُم ويَضرِبوا أعناقَكُم؟»</span> قالوا: بلى، قال: <span class='prophetic-quote'>«ذِكْرُ اللَّهِ تَعالى»</span>.",
+                    source: "رواه الترمذي وصححه الألباني"
+                },
+                {
+                    narrator: "عن زيد مولى النبي ﷺ أنه سمع رسول الله ﷺ يقول:",
+                    text: "<span class='prophetic-quote'>«مَن قالَ: أستغفِرُ اللَّهَ العظيمَ الَّذي لا إلَهَ إلَّا هوَ الحيَّ القيُّومَ وأتوبُ إليهِ، غُفِرَ لَهُ وإن كانَ فرَّ مِنَ الزَّحفِ»</span>.",
+                    source: "رواه أبو داود والترمذي وصححه الألباني"
+                },
+                {
+                    narrator: "عن عبد الله بن عباس رضي الله عنهما قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«مَن لَزِمَ الاستغفارَ جَعَلَ اللَّهُ لَهُ مِن كلِّ ضيقٍ مَخرجًا، ومِن كلِّ هَمٍّ فَرَجًا، ورَزَقَهُ مِن حيثُ لا يَحتسِبُ»</span>.",
+                    source: "رواه أبو داود والنسائي"
+                }
+            ]
+        },
+        {
+            topic: "تكفير الخطايا بالصبر على البلاء",
+            items: [
+                {
+                    narrator: "عن أنس بن مالك رضي الله عنه قال:",
+                    text: "سمعت النبي ﷺ يقول: <span class='prophetic-quote'>«إنَّ اللَّهَ قالَ: إذا ابْتَلَيْتُ عَبْدِي بحَبِيبَتَيْهِ، فَصَبَرَ، عَوَّضْتُهُ منهما الجَنَّةَ»</span>.",
+                    source: "رواه البخاري"
+                },
+                {
+                    narrator: "عن أبي هريرة رضي الله عنه قال رسول الله ﷺ:",
+                    text: "<span class='prophetic-quote'>«ما يَزالُ البَلاءُ بالمُؤْمِنِ والمُؤْمِنَةِ في نَفْسِهِ ووَلَدِهِ ومالِهِ حتَّى يَلْقَى اللَّهَ وما عليه خَطِيئَةٌ»</span>.",
+                    source: "رواه الترمذي وصححه الألباني"
+                },
+                {
+                    narrator: "عن عبد الله بن مسعود رضي الله عنه أن رسول الله ﷺ قال:",
+                    text: "<span class='prophetic-quote'>«ما مِن مُسْلِمٍ يُصِيبُهُ أذًى مِن مَرَضٍ فما سِواهُ، إلَّا حَطَّ اللَّهُ به سَيِّئاتِهِ، كما تَحُطُّ الشَّجَرَةُ ورَقَها»</span>.",
+                    source: "متفق عليه"
+                },
+                {
+                    narrator: "عن عطاء بن أبي رباح قال:",
+                    text: "قال لي ابن عباس رضي الله عنهما: ألا أريك امرأة من أهل الجنة؟ قلت: بلى، قال: هذه المرأة السوداء، أتت النبي ﷺ فقالت: إني أُصرع، وإني أتكشف، فادعُ الله لي، قال: <span class='prophetic-quote'>«إنْ شِئْتِ صَبَرْتِ ولَكِ الجَنَّةُ، وإنْ شِئْتِ دَعَوْتُ اللَّهَ أنْ يُعافِيَكِ»</span>، فقالت: أصبر، فقالت: إني أتكشف، فادعُ الله لي أن لا أتكشف، فدعا لها.",
+                    source: "متفق عليه"
+                }
+            ]
+        }
+    ];
+
+    let selectedTopic = "الكل";
+
+    function initTopics() {
+        const bar = document.getElementById("topicsBar");
+        const allBtn = document.createElement("button");
+        allBtn.className = "topic-btn active";
+        allBtn.innerText = "الكل (" + hadithDatabase.reduce((acc, t) => acc + t.items.length, 0) + ")";
+        allBtn.onclick = () => selectTopic("الكل", allBtn);
+        bar.appendChild(allBtn);
+
+        hadithDatabase.forEach(group => {
+            const btn = document.createElement("button");
+            btn.className = "topic-btn";
+            btn.innerText = group.topic;
+            btn.onclick = () => selectTopic(group.topic, btn);
+            bar.appendChild(btn);
+        });
+    }
+
+    function selectTopic(topic, btnElement) {
+        selectedTopic = topic;
+        document.querySelectorAll(".topic-btn").forEach(b => b.classList.remove("active"));
+        btnElement.classList.add("active");
+        filterHadiths();
+    }
+
+    function copyHadith(btn, narrator, rawText, source) {
+        const cleanText = rawText.replace(/<[^>]*>?/gm, '');
+        const fullCopy = `${narrator} ${cleanText} (${source})`;
+        navigator.clipboard.writeText(fullCopy).then(() => {
+            const oldText = btn.innerText;
+            btn.innerText = "تم النسخ ✓";
+            setTimeout(() => btn.innerText = oldText, 1500);
+        });
+    }
+
+    function filterHadiths() {
+        const query = document.getElementById("searchInput").value.trim().toLowerCase();
+        const container = document.getElementById("hadithsContainer");
+        container.innerHTML = "";
+        let totalFound = 0;
+
+        hadithDatabase.forEach(group => {
+            if (selectedTopic !== "الكل" && group.topic !== selectedTopic) return;
+
+            const matchedItems = group.items.filter(item => {
+                const plainText = item.text.replace(/<[^>]*>?/gm, '');
+                return (
+                    group.topic.toLowerCase().includes(query) ||
+                    item.narrator.toLowerCase().includes(query) ||
+                    plainText.toLowerCase().includes(query) ||
+                    item.source.toLowerCase().includes(query)
+                );
+            });
+
+            if (matchedItems.length > 0) {
+                totalFound += matchedItems.length;
+                const sectionTitle = document.createElement("h2");
+                sectionTitle.className = "topic-section-title";
+                sectionTitle.innerHTML = `<span>${group.topic}</span><span class="topic-count">${matchedItems.length} أحاديث</span>`;
+                container.appendChild(sectionTitle);
+
+                matchedItems.forEach(item => {
+                    const card = document.createElement("div");
+                    card.className = "hadith-card";
+                    
+                    const safeNarrator = item.narrator.replace(/'/g, "\'");
+                    const safeText = item.text.replace(/'/g, "\'");
+                    const safeSource = item.source.replace(/'/g, "\'");
+
+                    card.innerHTML = `
+                        <span class="narrator">${item.narrator}</span>
+                        <div class="hadith-text">${item.text}</div>
+                        <div class="card-footer">
+                            <span class="source-badge">${item.source}</span>
+                            <button class="copy-btn" onclick="copyHadith(this, '${safeNarrator}', '${safeText}', '${safeSource}')">نسخ الحديث 📋</button>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+            }
+        });
+
+        if (totalFound === 0) {
+            container.innerHTML = `<div class="empty-state">لم يتم العثور على أحاديث مطابقة لبحثك.</div>`;
+        }
+    }
+
+    initTopics();
+    filterHadiths();
+
+
+    let currentScale = 1.12;
+
+    function changeFontSize(delta) {
+        currentScale = Math.min(1.6, Math.max(0.9, currentScale + delta));
+        document.documentElement.style.setProperty('--body-size', currentScale + 'rem');
+    }
+
+    function filterEvents() {
+        const query = document.getElementById('searchInput').value.trim().toLowerCase();
+        const sections = document.querySelectorAll('.era-section');
+        let anyVisible = false;
+
+        sections.forEach(section => {
+            const cards = section.querySelectorAll('.event-card');
+            let sectionHasVisible = false;
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = 'block';
+                    sectionHasVisible = true;
+                    anyVisible = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            section.style.display = sectionHasVisible ? 'block' : 'none';
+        });
+
+        document.getElementById('noResults').style.display = anyVisible ? 'none' : 'block';
+    }
+
+
+const faqData = [
+    // الطهارة (10)
+    { cat: "الطهارة", q: "ما هي فروض الوضوء التي لا يصح الوضوء إلا بها؟", a: "فروض الوضوء ستة: غسل الوجه (ومنه المضمضة والاستنشاق)، وغسل اليدين إلى المرفقين، ومسح الرأس (ومنه الأذنان)، وغسل الرجلين إلى الكعبين، والترتيب بين الأعضاء، والموالاة (عدم الفصل الطويل بين غسل عضو وآخر)." },
+    { cat: "الطهارة", q: "ما حكم التسمية (قول بسم الله) عند بدء الوضوء؟", a: "التسمية واجبة مع الذكر عند الحنابلة وتسقط بالنسيان والجهل، وهي سنة مؤكدة عند جمهور العلماء، ومن نسيها فوضوؤه صحيح." },
+    { cat: "الطهارة", q: "هل النوم ينقض الوضوء؟", a: "النوم اليسير (النعاس) الذي يشعر معه الإنسان بنفسه وبمن حوله لا ينقض الوضوء، أما النوم المستغرق العميق الذي يزول معه الإدراك فينقض الوضوء." },
+    { cat: "الطهارة", q: "ما هي مدة المسح على الخفين أو الجوربين؟", a: "للمقيم يوم وليلة (24 ساعة)، وللمسافر ثلاثة أيام بلياليهن (72 ساعة)، وتبدأ المدة من أول مسحة بعد الحدث على القول الراجح." },
+    { cat: "الطهارة", q: "ما هي شروط المسح على الجوربين (الشراب)؟", a: "يشترط أن يلبسهما على طهارة كاملة (بعد وضوء)، وأن يكونا ساترين لمحل الفرض (الكعبين)، وأن يكون المسح في الطهارة الصغرى (الوضوء) لا في الغسل من الجنابة." },
+    { cat: "الطهارة", q: "متى يُشرع التيمم وكيف تكون صفته؟", a: "يُشرع عند عدم وجود الماء أو العجز عن استعماله لمرض أو خوف ضرر. وصفته: أن يضرب بيديه الصعيد الطاهر (التراب أو ما على وجه الأرض) ضربة واحدة، ثم يمسح بهما وجهه وكفيه." },
+    { cat: "الطهارة", q: "هل خروج الدم من الجرح أو الرعاف ينقض الوضوء؟", a: "القول الراجح عند المحققين من أهل العلم أن خروج الدم من غير السبيلين (كالجرح والرعاف) لا ينقض الوضوء سواء كان قليلاً أو كثيراً، وإن كان الوضوء منه احتياطاً حسن." },
+    { cat: "الطهارة", q: "هل أكل لحم الإبل ينقض الوضوء؟", a: "نعم، أكل لحم الإبل ينقض الوضوء لقول النبي ﷺ لما سُئل: أنتوضأ من لحوم الإبل؟ قال: «نعم» (رواه مسلم)، بخلاف مرقها أو لبنها فلا ينقض." },
+    { cat: "الطهارة", q: "ما حكم الشك في انتقاض الوضوء بعد التيقن من الطهارة؟", a: "القاعدة الفقهية تقول: (اليقين لا يزول بالشك)؛ فمن تيقن أنه توضأ ثم شك هل أحدث أم لا، فهو على وضوئه ولا يلزمه إعادته حتى يتيقن الحدث." },
+    { cat: "الطهارة", q: "ما هي موجبات الغسل الواجب؟", a: "موجبات الغسل ستة: خروج المني دفقاً بلذة، التقاء الختانين (الجماع) ولو لم ينزل، انقطاع دم الحيض، انقطاع دم النفاس، إسلام الكافر، والموت (فيجب تغسيل الميت المسلم)." },
+
+    // الصلاة (12)
+    { cat: "الصلاة", q: "ما الفرق بين ركن الصلاة وواجبها وسنتها؟", a: "الركن لا يسقط عمداً ولا سهواً ولا بد من الإتيان به (كالفاتحة والركوع). الواجب يسقط بالسهو ويُجبر بسجود السهو (كالتشهد الأول والتسبيح في الركوع). السنة لا تبطل الصلاة بتركها عمداً ولا سهواً (كدعاء الاستفتاح)." },
+    { cat: "الصلاة", q: "متى يكون سجود السهو قبل السلام ومتى يكون بعده؟", a: "إذا كان السهو عن نقص (مثل نسيان التشهد الأول) فالسجود يكون قبل السلام. وإذا كان السهو عن زيادة (مثل زيادة ركعة) أو شك غلب فيه أحد الاحتمالين، فالسجود يكون بعد السلام." },
+    { cat: "الصلاة", q: "من أدرك الإمام وهو راكع، هل تُحسب له الركعة؟", a: "نعم، من أدرك الإمام في الركوع واستقر راكعاً قبل أن يرفع الإمام صلبه فقد أدرك الركعة، وتُجزئه قراءة الإمام عن الفاتحة في هذه الحالة." },
+    { cat: "الصلاة", q: "ما حكم قراءة سورة الفاتحة للمأموم في الصلاة الجهرية؟", a: "اختلف العلماء: يرى الشافعية وجوب قراءتها على المأموم في السرية والجهرية في سكتات الإمام، ويرى الجمهور أن قراءة الإمام قراءة للمأموم في الجهرية وتجب عليه في السرية." },
+    { cat: "الصلاة", q: "ما هي الأوقات التي يُنهى عن صلاة النافلة فيها؟", a: "ثلاثة أوقات رئيسية: من بعد صلاة الفجر حتى ترتفع الشمس قيد رمح، وعند قيام الشمس في كبد السماء قبيل الظهر بعشر دقائق تقريباً، ومن بعد صلاة العصر حتى تغرب الشمس. وتُستثنى ذوات الأسباب كتحية المسجد وصلاة الجنازة." },
+    { cat: "الصلاة", q: "ما حكم صلاة الوتر وما أقلها وأكثرها؟", a: "صلاة الوتر سنة مؤكدة واظب عليها النبي ﷺ حضراً وسفراً. أقلها ركعة واحدة، وأدنى الكمال ثلاث ركعات، وأكثرها إحدى عشرة أو ثلاث عشرة ركعة، ووقتها من بعد صلاة العشاء إلى طلوع الفجر." },
+    { cat: "الصلاة", q: "ما هي شروط قصر الصلاة للمسافر؟", a: "يُشرع للمسافر قصر الصلاة الرباعية (الظهر والعصر والعشاء) إلى ركعتين إذا بلغت مسافة السفر نحو 80 كيلومتراً فأكثر، ولا يزال في حكم السفر ولم ينوِ الإقامة المطلقة." },
+    { cat: "الصلاة", q: "ما حكم صلاة الجماعة للرجال؟", a: "صلاة الجماعة في المسجد واجبة على الرجال القادرين في أصح أقوال العلماء ما لم يكن هناك عذر شرعي كمرض أو مطر شديد أو خوف." },
+    { cat: "الصلاة", q: "ماذا يفعل من نسي ركناً من أركان الصلاة وتذكره؟", a: "إن تذكره قبل أن يصل إلى موضعه من الركعة التالية رجع فأتى به وبما بعده ثم سجد للسهو. وإن لم يتذكره إلا بعد وصوله إلى موضعه من الركعة التالية ألغى الركعة الناقصة وقامت الحالية مقامها وسجد للسهو." },
+    { cat: "الصلاة", q: "ما حكم الالتفات في الصلاة؟", a: "الالتفات بالرأس في الصلاة مكروه ينقص من أجرها وهو اختلاس يختلسه الشيطان من صلاة العبد، أما الالتفات بالبدن كله عن القبلة عمداً فيبطل الصلاة." },
+    { cat: "الصلاة", q: "ما حكم صلاة تحية المسجد؟", a: "سنة مؤكدة، لقول النبي ﷺ: «إذا دخل أحدكم المسجد فلا يجلس حتى يصلي ركعتين»، وتُشرع في كل وقت دخل فيه المسلم المسجد." },
+    { cat: "الصلاة", q: "كيف يقضي المسبوق ما فاته من الصلاة مع الإمام؟", a: "ما أدركه المسبوق مع الإمام هو أول صلاته، وما يقضيه بعد سلام الإمام هو آخر صلاته على القول الراجح، فيتم صلاته على هذا الأساس." },
+
+    // الزكاة (7)
+    { cat: "الزكاة", q: "ما هو نصاب زكاة الذهب والفضة والأوراق النقدية؟", a: "نصاب الذهب 85 جراماً من الذهب الخالص (عيار 24)، ونصاب الفضة 595 جراماً. وتُقاس الأوراق النقدية بأقل النصابين (غالباً نصاب الفضة لأنه أنفع للفقراء) أو بالذهب عند بعض الهيئات الشرعية." },
+    { cat: "الزكاة", q: "كم مقدار الواجب إخراجه في زكاة المال وعروض التجارة؟", a: "المقدار الواجب هو ربع العُشر، أي (2.5%) من إجمالي المال المدخر أو قيمة البضائع المعدة للبيع بعد مرور عام هجري كامل عليه." },
+    { cat: "الزكاة", q: "من هم الأصناف الثمانية المستحقون للزكاة؟", a: "ذكرهم الله في سورة التوبة: الفقراء، المساكين، العاملون عليها، المؤلفة قلوبهم، في الرقاب، الغارمون (المدينون)، في سبيل الله، وابن السبيل (المسافر المنقطع)." },
+    { cat: "الزكاة", q: "هل تجب الزكاة في البيت الذي يسكنه الإنسان أو سيارته الشخصية؟", a: "لا زكاة في الحاجات الأصلية للإنسان كبيته الذي يسكنه، وسيارته التي يركبها، وأثاث منزله، وأدوات حرفته، لقول النبي ﷺ: «ليس على المسلم في عبده ولا فرسه صدقة»." },
+    { cat: "الزكاة", q: "ما حكم إعطاء الزكاة للأقارب كالأخ والأخت والعم؟", a: "يجوز إعطاء الزكاة للأقارب الفقراء الذين لا تلزم المزكي نفقتهم (كالإخوة والأخوات والأعمام والأخوال)، بل هي صدقة وصلة رحم، ولا يجوز إعطاؤها للأصول (الوالدين) ولا الفروع (الأبناء)." },
+    { cat: "الزكاة", q: "ما حكم زكاة الفطر ومتى يجب إخراجها؟", a: "زكاة الفطر فريضة على كل مسلم صغير أو كبير، ومقدارها صاع (نحو 2.5 إلى 3 كجم) من غالب قوت البلد. ووقت وجوبها بغروب شمس ليلة العيد، والأفضل إخراجها قبل صلاة العيد، ويجوز تعجيلها قبل العيد بيوم أو يومين." },
+    { cat: "الزكاة", q: "هل تجب الزكاة في الراتب الشهري الذي يُنفق أولاً بأول؟", a: "إذا كان الراتب يُنفق خلال الشهر ولا يبقى منه شيء فلا زكاة فيه. أما ما يُدخر منه وبلغ النصاب وحال عليه الحول الهجري فتجب فيه الزكاة." },
+
+    // الصيام (8)
+    { cat: "الصيام", q: "ما حكم من أكل أو شرب ناسياً في نهار رمضان؟", a: "صيامه صحيح ولا قضاء عليه ولا كفارة، لقول النبي ﷺ: «من نسي وهو صائم فأكل أو شرب فليتم صومه، فإنما أطعمه الله وسقاه» (متفق عليه)." },
+    { cat: "الصيام", q: "هل استخدام بخاخ الربو أو قطرة العين يفطر الصائم؟", a: "بخاخ الربو وقطرة العين وقطرة الأذن لا تفطر الصائم في أصح أقوال أهل العلم؛ لأنها ليست أكلاً ولا شرباً ولا في معناهما." },
+    { cat: "الصيام", q: "ما حكم الإبر العلاجية والمغذية للصائم؟", a: "الإبر غير المغذية (التي تُعطى في العضل أو الوريد للعلاج كالمسكنات والمضادات) لا تفطر. أما الإبر المغذية (المحاليل التي تغني عن الطعام والشراب) فتفطر الصائم." },
+    { cat: "الصيام", q: "متى يجب تبييت النية في الصيام؟", a: "في صيام الفريضة (كرمضان والقضاء والنذر) يجب تبييت النية من الليل قبل طلوع الفجر. أما في صيام النافلة فيجوز إنشاء النية من النهار بشرط ألا يكون قد تناول مفطراً بعد الفجر." },
+    { cat: "الصيام", q: "ما حكم استعمال السواك ومعجون الأسنان للصائم؟", a: "السواك سنة للصائم في أول النهار وآخره. أما معجون الأسنان فيجوز استعماله مع التحرز الشديد من ابتلاع شيء منه، والأولى استعماله ليلاً." },
+    { cat: "الصيام", q: "ما هي كفارة من أفطر في رمضان بعذر المرض المزمن أو الشيخوخة؟", a: "من عجز عن الصيام عجزاً دائماً لمرض لا يُرجى شفاؤه أو لكبر سن، فإنه يفطر ويطعم عن كل يوم مسكيناً (نحو نصف صاع من الأرز أو الطعام المعتاد)." },
+    { cat: "الصيام", q: "هل القيء يفطر الصائم؟", a: "إذا غلب القيء الصائم وخرج بغير اختياره فلا يفطر وصومه صحيح. أما من تعمد القيء (استقاء) فقد أفطر وعليه القضاء." },
+    { cat: "الصيام", q: "ما حكم صيام الست من شوال لمن عليه قضاء من رمضان؟", a: "الأفضل والأكمل أن يبدأ بقضاء أيام رمضان أولاً ثم يصوم الست من شوال ليصدق عليه حديث: «من صام رمضان ثم أتبعه ستاً من شوال كان كصيام الدهر»." },
+
+    // الحج والعمرة (5)
+    { cat: "الحج والعمرة", q: "ما هي أركان الحج الأربعة التي لا يصح الحج بدونها؟", a: "أركان الحج أربعة: الإحرام (نية الدخول في النسك)، والوقوف بعرفة (وهو الركن الأعظم)، وطواف الإفاضة، والسعي بين الصفا والمروة." },
+    { cat: "الحج والعمرة", q: "ما هي أركان العمرة؟", a: "أركان العمرة ثلاثة: الإحرام من الميقات، والطواف بالبيت سبعة أشواط، والسعي بين الصفا والمروة سبعة أشواط، ويُكملها الحلق أو التقصير وهو من واجباتها." },
+    { cat: "الحج والعمرة", q: "ما هي محظورات الإحرام التي يجب على المحرم اجتنابها؟", a: "حلق الشعر، تقليم الأظافر، تغطية الرأس للرجل بملاصق، لبس المخيط المفصل على البدن للرجل، الطيب، قتل صيد البر، عقد النكاح، والجماع." },
+    { cat: "الحج والعمرة", q: "ماذا يفعل المحرم إذا تجاوز الميقات دون أن يحرم؟", a: "يجب عليه أن يرجع إلى الميقات ليحرم منه ولا شيء عليه، فإن أحرم من مكانه ولم يرجع فعليه دم (شاة تُذبح في مكة وتُوزع على الفقراء) وحجه أو عمرته صحيحة." },
+    { cat: "الحج والعمرة", q: "ما هي أنواع النسك الثلاثة في الحج؟", a: "التمتع (أن يحرم بالعمرة في أشهر الحج ويحل منها ثم يحرم بالحج في عامه)، والقران (أن يحرم بالعمرة والحج معاً)، والإفراد (أن يحرم بالحج وحده)." },
+
+    // العقيدة (8)
+    { cat: "العقيدة", q: "ما هي أقسام التوحيد الثلاثة؟", a: "1. توحيد الربوبية: الإقرار بأن الله وحده الخالق الرازق المدبر. 2. توحيد الألوهية: إفراد الله وحده بالعبادة كالدعاء والصلاة والنذر. 3. توحيد الأسماء والصفات: إثبات ما أثبته الله لنفسه من الأسماء والصفات من غير تحريف ولا تعطيل ولا تكييف ولا تمثيل." },
+    { cat: "العقيدة", q: "ما معنى شهادة أن لا إله إلا الله؟", a: "معناها: لا معبود بحق إلا الله؛ فهي تتضمن ركنين: النفي في (لا إله) بنفي العبادة عن كل ما سوى الله، والإثبات في (إلا الله) بإثبات العبادة لله وحده لا شريك له." },
+    { cat: "العقيدة", q: "ما معنى شهادة أن محمداً رسول الله؟", a: "طاعته فيما أمر، وتصديقه فيما أخبر، واجتناب ما نهى عنه وزجر، وألا يُعبد الله إلا بما شرع." },
+    { cat: "العقيدة", q: "ما هي مراتب الإيمان بالقدر الأربعة؟", a: "1. العلم (أن الله علم كل شيء أزلاً). 2. الكتابة (كتابة المقادير في اللوح المحفوظ). 3. المشيئة (ما شاء الله كان وما لم يشأ لم يكن). 4. الخلق (الله خالق كل شيء وأفعال العباد)." },
+    { cat: "العقيدة", q: "ما الفرق بين الإسلام والإيمان والإحسان؟", a: "إذا اجتمعت في نص واحد فالإسلام هو الأعمال الظاهرة (الشهادتان والصلاة والزكاة والصوم والحج)، والإيمان هو الاعتقادات الباطنة (أركان الإيمان الستة)، والإحسان هو إتقان العبادة ومراقبة الله كأنك تراه." },
+    { cat: "العقيدة", q: "ما حكم التوسل المشروع والتوسل الممنوع؟", a: "التوسل المشروع يكون بأسماء الله وصفاته، أو بالأعمال الصالحة للعبد، أو بدعاء الرجل الصالح الحي الحاضر. أما التوسل بدعاء الأموات أو الاستغاثة بهم فهو شرك محرم." },
+    { cat: "العقيدة", q: "ما حكم تعليق التمائم والحروز لدفع العين أو الضرر؟", a: "لا يجوز تعليق التمائم والحروز والودع والخيوط لدفع العين أو جلب النفع، لقول النبي ﷺ: «من علق تميمة فقد أشرك»، والواجب التوكل على الله والتحصن بالأذكار الشرعية." },
+    { cat: "العقيدة", q: "ما حكم التطير (التشاؤم بالأيام أو الطيور أو الأرقام)؟", a: "التطير محرم وينافي كمال التوحيد، لقول النبي ﷺ: «الطيرة شرك»، أما الفأل الحسن (الكلمة الطيبة) فقد كان يعجب النبي ﷺ." },
+
+    // المعاملات والأخلاق (7)
+    { cat: "المعاملات والأخلاق", q: "ما هي القاعدة العامة في المعاملات المالية في الإسلام؟", a: "الأصل في المعاملات والبيوع الحل والإباحة، ولا يحرم منها إلا ما دل الشرع على تحريمه، مثل: الربا، والغرر (الجهالة الفاحشة)، والغش، والميسر (القمار)، وبيع المحرمات." },
+    { cat: "المعاملات والأخلاق", q: "ما حكم الغيبة وما الفرق بينها وبين البهتان؟", a: "الغيبة محرمة وهي ذكرك أخاك بما يكره مما هو فيه، لقول النبي ﷺ: «ذكرك أخاك بما يكره». فإن لم يكن فيه ما تقول فقد بهتَّه (وهو الكذب والافتراء وهو أشد إثماً)." },
+    { cat: "المعاملات والأخلاق", q: "ما هي شروط التوبة النصوح؟", a: "للإقلاع عن الذنب بين العبد وربه ثلاثة شروط: الإقلاع عن المعصية فوراً، والندم على فعلها، والعزم الصادق على عدم العودة إليها. وإن تعلق الذنب بحق آدمي يُضاف شرط رابع وهو رد الحقوق لأصحابها أو طلب المسامحة منهم." },
+    { cat: "المعاملات والأخلاق", q: "ما حكم هجر المسلم لأخيه المسلم؟", a: "يحرم على المسلم أن يهجر أخاه فوق ثلاث ليالٍ لأمور الدنيا، وخيرهما الذي يبدأ بالسلام، لقول النبي ﷺ: «لا يحل لمسلم أن يهجر أخاه فوق ثلاث ليال»." },
+    { cat: "المعاملات والأخلاق", q: "ما حكم رد السلام وهل هو فرض عين أم كفاية؟", a: "ابتداء السلام سنة مؤكدة، ورده واجب؛ فإن سلم على واحد تعين عليه الرد (فرض عين)، وإن سلم على جماعة أجزأ أن يرد أحدهم (فرض كفاية)." },
+    { cat: "المعاملات والأخلاق", q: "ما حكم الاحتكار في البيع والشراء؟", a: "الاحتكار محرم في الإسلام، وهو حبس السلع التي يحتاجها الناس (كالأقوات) عن السوق ليرتفع سعرها ويضيق على الناس، لقول النبي ﷺ: «لا يحتكر إلا خاطئ»." },
+    { cat: "المعاملات والأخلاق", q: "ما حكم الدين والمماطلة في سداده مع القدرة؟", a: "المماطلة في سداد الدين مع القدرة على الوفاء ظلم محرم، لقول النبي ﷺ: «مطل الغني ظلم»، بينما يُشرع إنظار المعسر والتيسير عليه." }
+];
+
+const quizQuestions = [
+    { q: "كم عدد فروض الوضوء المتفق عليها في الآية الكريمة؟", opts: ["4 فروض", "6 فروض مع الترتيب والموالاة", "8 فروض", "3 فروض"], ans: 1 },
+    { q: "ما هي مدة المسح على الخفين للمسافر؟", opts: ["يوم وليلة", "يومان", "ثلاثة أيام بلياليهن", "أسبوع كامل"], ans: 2 },
+    { q: "أي من الأطعمة التالية ينقض أكل لحمه الوضوء؟", opts: ["لحم الغنم", "لحم البقر", "لحم الإبل", "لحم الدجاج"], ans: 2 },
+    { q: "إذا نسي المصلي التشهد الأول، متى يسجد للسهو؟", opts: ["قبل السلام", "بعد السلام", "لا سجود عليه", "تبطل صلاته"], ans: 0 },
+    { q: "كم عدد أركان الصلاة؟", opts: ["10 أركان", "12 ركناً", "14 ركناً", "16 ركناً"], ans: 2 },
+    { q: "ما حكم من أدرك الإمام وهو راكع؟", opts: ["لا تُحسب له الركعة", "تُحسب له الركعة", "يعيد الصلاة", "يسجد للسهو"], ans: 1 },
+    { q: "كم يبلغ نصاب الذهب الخالص (عيار 24) لوجوب الزكاة؟", opts: ["50 جراماً", "85 جراماً", "100 جرام", "120 جراماً"], ans: 1 },
+    { q: "ما هو المقدار الواجب إخراجه في زكاة المال؟", opts: ["1%", "2.5% (ربع العشر)", "5%", "10%"], ans: 1 },
+    { q: "كم عدد الأصناف المستحقين للزكاة المذكورين في سورة التوبة؟", opts: ["5 أصناف", "6 أصناف", "8 أصناف", "10 أصناف"], ans: 2 },
+    { q: "ما حكم من أكل أو شرب ناسياً في نهار رمضان؟", opts: ["يفطر وعليه القضاء", "يفطر وعليه الكفارة", "صومه صحيح ولا شيء عليه", "يكمل صومه ويقضي يوماً"], ans: 2 },
+    { q: "أي مما يلي يُعد من مبطلات الصيام؟", opts: ["بخاخ الربو", "قطرة العين", "الإبر المغذية", "استعمال السواك"], ans: 2 },
+    { q: "ما هو الركن الأعظم في الحج؟", opts: ["طواف القدوم", "الوقوف بعرفة", "رمي الجمرات", "المبيت بمنى"], ans: 1 },
+    { q: "كم عدد أركان العمرة؟", opts: ["ركنان", "3 أركان", "4 أركان", "5 أركان"], ans: 1 },
+    { q: "إفراد الله تعالى بالعبادة (كالدعاء والصلاة والنذر) يُسمى:", opts: ["توحيد الربوبية", "توحيد الألوهية", "توحيد الأسماء والصفات", "الإحسان"], ans: 1 },
+    { q: "كم عدد أركان الإيمان؟", opts: ["5 أركان", "6 أركان", "7 أركان", "4 أركان"], ans: 1 },
+    { q: "ما حكم صلاة تحية المسجد عند دخول المسجد؟", opts: ["فرض عين", "سنة مؤكدة", "مباحة", "فرض كفاية"], ans: 1 },
+    { q: "ما هو الوقت الأفضل لإخراج زكاة الفطر؟", opts: ["أول رمضان", "منتصف رمضان", "قبل صلاة العيد", "بعد صلاة العيد"], ans: 2 },
+    { q: "ما حكم رد السلام على من ألقى السلام؟", opts: ["سنة", "واجب", "مستحب", "مباح"], ans: 1 },
+    { q: "ما هي المدة القصوى التي يحرم بعدها هجر المسلم لأخيه؟", opts: ["يوم واحد", "ثلاث ليالٍ", "أسبوع", "شهر"], ans: 1 },
+    { q: "الأصل في المعاملات المالية والبيوع في الإسلام هو:", opts: ["التحريم", "الحل والإباحة", "الكراهة", "التوقف"], ans: 1 },
+    { q: "ماذا يُسمى ذكرك أخاك بما يكره وليس فيه؟", opts: ["الغيبة", "النميمة", "البهتان", "الهمز"], ans: 2 },
+    { q: "كم عدد مراتب الإيمان بالقدر؟", opts: ["مرتبتان", "3 مراتب", "4 مراتب", "5 مراتب"], ans: 2 },
+    { q: "ما حكم التيمم عند العجز عن استعمال الماء لمرض؟", opts: ["لا يجوز", "جائز ومشروع", "مكروه", "يؤخر الصلاة"], ans: 1 },
+    { q: "ما هو النسك الذي يحرم فيه الحاج بالعمرة في أشهر الحج ثم يحل منها ثم يحرم بالحج؟", opts: ["الإفراد", "القران", "التمتع", "الإحصار"], ans: 2 },
+    { q: "هل تجب الزكاة في المنزل الذي يسكنه المسلم؟", opts: ["نعم تجب سنوياً", "لا زكاة فيه", "تجب مرة واحدة", "تجب نصف العشر"], ans: 1 },
+    { q: "ما أقل عدد لركعات صلاة الوتر؟", opts: ["ركعة واحدة", "ركعتان", "ثلاث ركعات", "خمس ركعات"], ans: 0 },
+    { q: "إذا غلب القيء الصائم وخرج بغير اختياره فما حكم صومه؟", opts: ["باطل", "صحيح ولا قضاء عليه", "مكروه", "يقضي يوماً"], ans: 1 },
+    { q: "ما معنى (الإحسان) كما بينه النبي ﷺ في حديث جبريل؟", opts: ["الصدقة على الفقراء", "أن تعبد الله كأنك تراه", "إماطة الأذى عن الطريق", "بر الوالدين"], ans: 1 },
+    { q: "ما حكم تبييت النية من الليل لصيام الفريضة كرمضان؟", opts: ["سنة", "شرط لصحة الصيام", "مستحب", "جائز نهاراً"], ans: 1 },
+    { q: "ما حكم مماطلة الغني القادر في سداد الدين؟", opts: ["مكروه", "ظلم محرم", "جائز عند الحاجة", "خلاف الأولى"], ans: 1 }
+];
+
+// Render FAQs
+function renderFAQs() {
+    const search = document.getElementById('faqSearch').value.trim().toLowerCase();
+    const cat = document.getElementById('faqCategory').value;
+    const container = document.getElementById('faqContainer');
+    
+    const filtered = faqData.filter(item => {
+        const matchCat = (cat === 'all' || item.cat === cat);
+        const matchText = (item.q.toLowerCase().includes(search) || item.a.toLowerCase().includes(search));
+        return matchCat && matchText;
+    });
+
+    document.getElementById('faqCountBadge').textContent = `العدد: ${filtered.length} سؤال`;
+    
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="hero"><p>لا توجد أسئلة مطابقة لبحثك. جرب كلمات أخرى.</p></div>`;
+        return;
+    }
+
+    container.innerHTML = filtered.map((item, idx) => `
+        <div class="faq-item" onclick="this.classList.toggle('open')">
+            <div class="faq-question">
+                <span>${idx + 1}. ${item.q}</span>
+                <span class="faq-cat">${item.cat}</span>
+            </div>
+            <div class="faq-answer">${item.a}</div>
+        </div>
+    `).join('');
+}
+
+// Quiz Logic
+let currentQ = 0;
+let score = 0;
+let answered = false;
+
+function loadQuiz() {
+    answered = false;
+    const qObj = quizQuestions[currentQ];
+    document.getElementById('quizProgress').textContent = `السؤال ${currentQ + 1} من ${quizQuestions.length}`;
+    document.getElementById('quizScore').textContent = `النتيجة: ${score}`;
+    document.getElementById('quizQuestion').textContent = qObj.q;
+    document.getElementById('quizFeedback').style.display = 'none';
+    document.getElementById('nextQBtn').style.display = 'none';
+
+    const optsHtml = qObj.opts.map((opt, i) => `
+        <button class="option-btn" onclick="checkAnswer(${i}, this)">${opt}</button>
+    `).join('');
+    document.getElementById('quizOptions').innerHTML = optsHtml;
+}
+
+function checkAnswer(selectedIdx, btn) {
+    if (answered) return;
+    answered = true;
+    const qObj = quizQuestions[currentQ];
+    const buttons = document.querySelectorAll('.option-btn');
+    const feedback = document.getElementById('quizFeedback');
+
+    buttons.forEach(b => b.disabled = true);
+
+    if (selectedIdx === qObj.ans) {
+        btn.classList.add('correct');
+        score++;
+        document.getElementById('quizScore').textContent = `النتيجة: ${score}`;
+        feedback.textContent = "أحسنت! إجابة صحيحة بارك الله فيك.";
+        feedback.style.background = "#d1fae5";
+        feedback.style.color = "#065f46";
+    } else {
+        btn.classList.add('wrong');
+        buttons[qObj.ans].classList.add('correct');
+        feedback.textContent = `إجابة خاطئة. الصواب هو: ${qObj.opts[qObj.ans]}`;
+        feedback.style.background = "#fee2e2";
+        feedback.style.color = "#991b1b";
+    }
+    feedback.style.display = 'block';
+
+    const nextBtn = document.getElementById('nextQBtn');
+    nextBtn.style.display = 'inline-block';
+    nextBtn.textContent = (currentQ < quizQuestions.length - 1) ? "السؤال التالي ⬅️" : "عرض النتيجة النهائية 🏆";
+}
+
+function nextQuestion() {
+    if (currentQ < quizQuestions.length - 1) {
+        currentQ++;
+        loadQuiz();
+    } else {
+        document.getElementById('quizBody').innerHTML = `
+            <div style="text-align:center; padding: 30px 10px;">
+                <h2 style="font-family:'Amiri',serif; color:var(--primary); font-size:2rem; margin-bottom:10px;">🎉 أتممت الاختبار بنجاح!</h2>
+                <p style="font-size:1.3rem; margin-bottom:20px;">نتيجتك النهائية هي: <strong>${score} من ${quizQuestions.length}</strong></p>
+                <button class="btn-primary" onclick="restartQuiz()">إعادة الاختبار من جديد 🔄</button>
+            </div>
+        `;
+    }
+}
+
+function restartQuiz() {
+    currentQ = 0;
+    score = 0;
+    document.getElementById('quizBody').innerHTML = `
+        <div class="quiz-q-text" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <div class="quiz-controls">
+            <button class="btn-primary" onclick="restartQuiz()" style="background:var(--gold);">إعادة الاختبار</button>
+            <button class="btn-primary" id="nextQBtn" onclick="nextQuestion()" style="display:none;">السؤال التالي ⬅️</button>
+        </div>
+    `;
+    loadQuiz();
+}
+
+// Tabs & Dark Mode
+function switchTab(tabName, btn) {
+    document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + tabName).classList.add('active');
+    btn.classList.add('active');
+}
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+    const btn = document.getElementById('themeBtn');
+    btn.textContent = document.body.classList.contains('dark-mode') ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي';
+}
+
+// Initialize
+renderFAQs();
+loadQuiz();
+
+
+        const terms = [
+            { ar: "التوحيد", en: "Monotheism (Tawhid)", cat: "عقيدة", desc: "إفراد الله تعالى بالربوبية والألوهية والأسماء والصفات." },
+            { ar: "الإيمان", en: "Faith (Iman)", cat: "عقيدة", desc: "اعتقاد بالقلب وقول باللسان وعمل بالجوارح، يزيد بالطاعة وينقص بالمعصية." },
+            { ar: "الإحسان", en: "Excellence (Ihsan)", cat: "عقيدة", desc: "أن تعبد الله كأنك تراه، فإن لم تكن تراه فإنه يراك." },
+            { ar: "القدر", en: "Divine Decree (Qadar)", cat: "عقيدة", desc: "علم الله الأزلي بالأشياء وكتابتها ومشيئته وخلقه لها." },
+            { ar: "الولاء والبراء", en: "Loyalty and Disavowal", cat: "عقيدة", desc: "محبة الله ورسوله والمؤمنين ونصرتهم، والبراءة من الشرك وأهله." },
+            { ar: "الركن", en: "Pillar (Rukn)", cat: "فقه", desc: "ما يتوقف عليه صحة العبادة ويكون جزءاً داخلاً في ماهيتها كالركوع في الصلاة." },
+            { ar: "الشرط", en: "Condition (Shart)", cat: "فقه", desc: "ما يلزم من عدمه العدم ويكون خارجاً عن ماهية العبادة كالوضوء للصلاة." },
+            { ar: "الواجب / الفرض", en: "Obligatory (Wajib / Fard)", cat: "فقه", desc: "ما طلب الشارع فعله طلباً جازماً، يثاب فاعله امتثالاً ويستحق العقاب تاركه." },
+            { ar: "المستحب / السنة", en: "Recommended (Mustahabb)", cat: "فقه", desc: "ما طلب الشارع فعله طلباً غير جازم، يثاب فاعله ولا يعاقب تاركه." },
+            { ar: "المباح", en: "Permissible (Mubah)", cat: "فقه", desc: "ما خيّر الشارع المكلف بين فعله وتركه، فلا يثاب على فعله ولا يعاقب على تركه." },
+            { ar: "المكروه", en: "Disliked (Makruh)", cat: "فقه", desc: "ما طلب الشارع تركه طلباً غير جازم، يثاب تاركه امتثالاً ولا يعاقب فاعله." },
+            { ar: "المحرم", en: "Forbidden (Haram)", cat: "فقه", desc: "ما طلب الشارع تركه طلباً جازماً، يثاب تاركه امتثالاً ويستحق العقاب فاعله." },
+            { ar: "الزكاة", en: "Obligatory Almsgiving (Zakat)", cat: "فقه", desc: "حق واجب في مال خاص لطائفة مخصوصة في وقت مخصوص." },
+            { ar: "الاجتهاد", en: "Independent Legal Reasoning (Ijtihad)", cat: "فقه", desc: "بذل الفقيه وسعه لاستنباط حكم شرعي عملي من أدلته التفصيلية." }
+        ];
+
+        function renderDict() {
+            const q = document.getElementById('searchDict').value.trim().toLowerCase();
+            const cat = document.getElementById('catFilter').value;
+            const list = document.getElementById('dictList');
+            list.innerHTML = '';
+
+            const filtered = terms.filter(t => 
+                (cat === 'all' || t.cat === cat) && 
+                (t.ar.includes(q) || t.desc.includes(q) || t.en.toLowerCase().includes(q))
+            );
+
+            if (filtered.length === 0) {
+                list.innerHTML = '<p style="text-align:center; padding:15px;">لا توجد نتائج مطابقة لبحثك.</p>';
+                return;
+            }
+
+            filtered.forEach(t => {
+                const item = document.createElement('div');
+                item.className = 'term-item';
+                item.innerHTML = `
+                    <div class="term-header">
+                        <span class="term-title">${t.ar} — ${t.en}</span>
+                        <span class="term-badge">${t.cat}</span>
+                    </div>
+                    <p>${t.desc}</p>
+                    <button class="btn-sec" onclick="useTerm('${t.ar}')">ترجم هذا المصطلح</button>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function useTerm(word) {
+            document.getElementById('srcText').value = word;
+            doTranslate();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function swapLangs() {
+            const from = document.getElementById('fromLang');
+            const to = document.getElementById('toLang');
+            const temp = from.value;
+            from.value = to.value;
+            to.value = temp;
+        }
+
+        async function doTranslate() {
+            const txt = document.getElementById('srcText').value.trim();
+            if (!txt) return;
+            const from = document.getElementById('fromLang').value;
+            const to = document.getElementById('toLang').value;
+            const resBox = document.getElementById('resText');
+            resBox.value = 'جاري الترجمة...';
+
+            try {
+                const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(txt)}&langpair=${from}|${to}`);
+                const data = await res.json();
+                resBox.value = data.responseData.translatedText;
+            } catch (e) {
+                resBox.value = 'تعذر الاتصال بخدمة الترجمة. يرجى التحقق من اتصال الإنترنت.';
+            }
+        }
+
+        function speakText() {
+            const text = document.getElementById('resText').value;
+            if (!text) return;
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = document.getElementById('toLang').value;
+            speechSynthesis.speak(u);
+        }
+
+        function copyText() {
+            const text = document.getElementById('resText').value;
+            if (!text) return;
+            navigator.clipboard.writeText(text);
+            const btn = document.getElementById('copyBtn');
+            btn.textContent = '✅ تم النسخ';
+            setTimeout(() => { btn.textContent = '📋 نسخ الترجمة'; }, 2000);
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            const btn = document.getElementById('themeBtn');
+            btn.textContent = document.body.classList.contains('dark') ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي';
+        }
+
+        renderDict();
+    
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.getElementById('themeBtn');
+            const isDark = document.body.classList.contains('dark-mode');
+            btn.textContent = isDark ? '☀️ الوضع النهاري' : '🌙 الوضع الليلي';
+            localStorage.setItem('site_theme', isDark ? 'dark' : 'light');
+        }
+
+        // استعادة الوضع المحفوظ تلقائياً
+        if (localStorage.getItem('site_theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            document.getElementById('themeBtn').textContent = '☀️ الوضع النهاري';
+        }
+    
+    </script>
+</body>
+</html>
